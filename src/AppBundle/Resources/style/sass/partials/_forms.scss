@@ -1,5 +1,6 @@
 @import "colors";
 
+// Group search bar
 .groupSearch {
     &--centered {
         text-align: center;
@@ -26,6 +27,7 @@
     }
 }
 
+// Login / Registration forms
 .demo-card-wide.mdl-card {
   width: 50%;
   text-align: center;
@@ -41,8 +43,12 @@
   font-size: 36px;
 }
 
-demo-card__flipFormBtn {
-
+.demo-card__button {
+  margin: 15px !important;
+}
+.demo-card__textfield {
+  max-width: 100% !important;
+  min-width: 50% !important;
 }
 
 .mdl-textfield__label:after {

@@ -1,20 +1,21 @@
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <h1 class="demo-card__h1">Login</h1>
+    <h1 class="demo-card__h1">Prisijungimas</h1>
     <form action="#">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label demo-card__textfield">
             <input class="mdl-textfield__input" type="text" id="sample1">
-            <label class="mdl-textfield__label" for="sample1">Username</label>
+            <label class="mdl-textfield__label" for="sample1">Prisijungimo vardas</label>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label demo-card__textfield">
             <input class="mdl-textfield__input" type="text" id="sample1">
-            <label class="mdl-textfield__label" for="sample1">Password</label>
+            <label class="mdl-textfield__label" for="sample1">Slaptažodis</label>
         </div>
-        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        <div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised demo-card__button" >
             Log in
         </button>
+        </div>
 
-        <p>
-            <a class="demo-card__flipFormBtn" href=""></a>
-        </p>
+        <a class="demo-card__flipFormBtn" href="{{path('register')}}">Neturite paskyros? Užsiregistruokite.</a>
+
     </form>
 </div>

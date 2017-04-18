@@ -1817,6 +1817,15 @@ video::-webkit-media-text-track-display {
   font-size: 36px;
 }
 
+.demo-card__button {
+  margin: 15px !important;
+}
+
+.demo-card__textfield {
+  max-width: 100% !important;
+  min-width: 50% !important;
+}
+
 .mdl-textfield__label:after {
   background-color: #ef5350 !important;
 }
