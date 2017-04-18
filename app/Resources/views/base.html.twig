@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}{{ "My project" }}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset("images/favicon.ico")}}">
+
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     {% endblock %}
+
     {% block canonical_meta %}{% endblock %}
 </head>
 <body>
-<div class="container">
-    {% block container %}
-        {% block header %}
-            {% include "::inc/header.html.twig" %}
-        {% endblock %}
-        {% block body %}{% endblock %}
+    {% block body %}
     {% endblock %}
-</div>
-{% block footer %}
-{% include "::inc/footer.html.twig" %}
-{% endblock %}
+
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset("js/script.js") }}"></script>
 {% endblock %}
 </body>
 </html>
