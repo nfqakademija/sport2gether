@@ -21,6 +21,14 @@ class HomeController extends Controller
      */
     public function loginAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', []);
+        return $this->render('AppBundle:Home:login.html.twig', []);
+    }
+
+    /**
+     * @Route("/regsiter", name="register")
+     */
+    public function registerAction()
+    {
+        return $this->render('AppBundle:Home:register.html.twig', []);
     }
 }
