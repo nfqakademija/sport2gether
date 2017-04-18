@@ -21,6 +21,6 @@ class HomeController extends Controller
      */
     public function loginAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', []);
+        return $this->render('AppBundle:Home:login.html.twig', []);
     }
 }
