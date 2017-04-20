@@ -15,7 +15,7 @@ use AppBundle\Entity\Event;
  * @ORM\Table(name="coach")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoachRepository")
  */
-class Coach extends User
+class Coach
 {
     /**
      * @var int
@@ -47,15 +47,29 @@ class Coach extends User
     private $category;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     */
+    private $username;
+
+    /**
      * @ORM\ManyToOne(targetEntity="City", inversedBy="coaches")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     private $city;
 
     /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="coach")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="coach")
      */
     private $events;
+
 
     public function __construct()
     {
@@ -200,5 +214,61 @@ class Coach extends User
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstName." ".$this->lastName;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Coach
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Coach
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

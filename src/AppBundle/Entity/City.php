@@ -149,4 +149,9 @@ class City
     {
         return $this->events;
     }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }
