@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\City;
+use AppBundle\Entity\Coach;
 
 /**
  * Event
@@ -50,19 +53,19 @@ class Event
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Coach", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="Coach", inversedBy="events")
      * @ORM\JoinColumn(name="coach_id", referencedColumnName="id")
      */
     private $coach;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="events")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="events")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     private $city;
@@ -177,11 +180,11 @@ class Event
     /**
      * Set coach
      *
-     * @param \AppBundle\Entity\Coach $coach
+     * @param Coach $coach
      *
      * @return Event
      */
-    public function setCoach(\AppBundle\Entity\Coach $coach = null)
+    public function setCoach(Coach $coach = null)
     {
         $this->coach = $coach;
 
@@ -191,7 +194,7 @@ class Event
     /**
      * Get coach
      *
-     * @return \AppBundle\Entity\Coach
+     * @return Coach
      */
     public function getCoach()
     {
@@ -201,11 +204,11 @@ class Event
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return Event
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -215,7 +218,7 @@ class Event
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category
+     * @return Category
      */
     public function getCategory()
     {
@@ -225,11 +228,11 @@ class Event
     /**
      * Set city
      *
-     * @param \AppBundle\Entity\City $city
+     * @param City $city
      *
      * @return Event
      */
-    public function setCity(\AppBundle\Entity\City $city = null)
+    public function setCity(City $city = null)
     {
         $this->city = $city;
 
@@ -239,7 +242,7 @@ class Event
     /**
      * Get city
      *
-     * @return \AppBundle\Entity\City
+     * @return City
      */
     public function getCity()
     {

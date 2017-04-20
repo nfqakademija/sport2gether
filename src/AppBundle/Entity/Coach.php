@@ -4,6 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\City;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Event;
+
 
 /**
  * Coach
@@ -37,19 +41,19 @@ class Coach extends User
     private $lastName;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="coaches")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="coaches")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="coaches")
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="coaches")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     private $city;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="coach")
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="coach")
      */
     private $events;
 
@@ -119,11 +123,11 @@ class Coach extends User
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return Coach
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -133,7 +137,7 @@ class Coach extends User
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category
+     * @return Category
      */
     public function getCategory()
     {
@@ -143,11 +147,11 @@ class Coach extends User
     /**
      * Set city
      *
-     * @param \AppBundle\Entity\City $city
+     * @param City $city
      *
      * @return Coach
      */
-    public function setCity(\AppBundle\Entity\City $city = null)
+    public function setCity(City $city = null)
     {
         $this->city = $city;
 
@@ -157,7 +161,7 @@ class Coach extends User
     /**
      * Get city
      *
-     * @return \AppBundle\Entity\City
+     * @return City
      */
     public function getCity()
     {
@@ -167,11 +171,11 @@ class Coach extends User
     /**
      * Add event
      *
-     * @param \AppBundle\Entity\Event $event
+     * @param Event $event
      *
      * @return Coach
      */
-    public function addEvent(\AppBundle\Entity\Event $event)
+    public function addEvent(Event $event)
     {
         $this->events[] = $event;
 
@@ -181,9 +185,9 @@ class Coach extends User
     /**
      * Remove event
      *
-     * @param \AppBundle\Entity\Event $event
+     * @param Event $event
      */
-    public function removeEvent(\AppBundle\Entity\Event $event)
+    public function removeEvent(Event $event)
     {
         $this->events->removeElement($event);
     }

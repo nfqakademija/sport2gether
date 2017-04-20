@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Coach;
+use AppBundle\Entity\Event;
 
 /**
  * Category
@@ -31,12 +33,12 @@ class Category
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Coach", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Coach", mappedBy="category")
      */
     private $coaches;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="category")
      */
     private $events;
 
@@ -85,11 +87,11 @@ class Category
     /**
      * Add coach
      *
-     * @param \AppBundle\Entity\Coach $coach
+     * @param Coach $coach
      *
      * @return Category
      */
-    public function addCoach(\AppBundle\Entity\Coach $coach)
+    public function addCoach(Coach $coach)
     {
         $this->coaches[] = $coach;
 
@@ -99,9 +101,9 @@ class Category
     /**
      * Remove coach
      *
-     * @param \AppBundle\Entity\Coach $coach
+     * @param Coach $coach
      */
-    public function removeCoach(\AppBundle\Entity\Coach $coach)
+    public function removeCoach(Coach $coach)
     {
         $this->coaches->removeElement($coach);
     }
@@ -119,11 +121,11 @@ class Category
     /**
      * Add event
      *
-     * @param \AppBundle\Entity\Event $event
+     * @param Event $event
      *
      * @return Category
      */
-    public function addEvent(\AppBundle\Entity\Event $event)
+    public function addEvent(Event $event)
     {
         $this->events[] = $event;
 
@@ -133,9 +135,9 @@ class Category
     /**
      * Remove event
      *
-     * @param \AppBundle\Entity\Event $event
+     * @param Event $event
      */
-    public function removeEvent(\AppBundle\Entity\Event $event)
+    public function removeEvent(Event $event)
     {
         $this->events->removeElement($event);
     }
