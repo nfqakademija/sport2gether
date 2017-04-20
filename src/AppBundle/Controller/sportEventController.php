@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\creatEventFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -12,9 +13,11 @@ class sportEventController extends Controller
      */
     public function createEventAction()
     {
-        return $this->render('AppBundle:sportEvent:create_event.html.twig', array(
-            // ...
-        ));
+        $form = $this->createForm(creatEventFormType::class);
+        return $this->render('AppBundle:sportEvent:create_event.html.twig', [
+            'createEventForm' => $form->createView()
+        ]);
+
     }
 
     /**
