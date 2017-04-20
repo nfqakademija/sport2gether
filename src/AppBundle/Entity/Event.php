@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table(name="events")
+ * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  */
 class Event
@@ -24,9 +24,9 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $address;
+    private $title;
 
     /**
      * @var \DateTime
@@ -38,31 +38,35 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255)
      */
-    private $title;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     */
-    private $creator;
+    private $address;
 
     /**
-     * @return User
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
      */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
+    private $description;
 
     /**
-     * @param User $creator
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Coach", inversedBy="events")
+     * @ORM\JoinColumn(name="coach_id", referencedColumnName="id")
      */
-    public function setCreator(User $creator)
-    {
-        $this->creator = $creator;
-    }
+    private $coach;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="events")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="events")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
+
 
     /**
      * Get id
@@ -75,27 +79,27 @@ class Event
     }
 
     /**
-     * Set address
+     * Set title
      *
-     * @param string $address
+     * @param string $title
      *
      * @return Event
      */
-    public function setAddress($address)
+    public function setTitle($title)
     {
-        $this->address = $address;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get address
+     * Get title
      *
      * @return string
      */
-    public function getAddress()
+    public function getTitle()
     {
-        return $this->address;
+        return $this->title;
     }
 
     /**
@@ -123,27 +127,122 @@ class Event
     }
 
     /**
-     * Set title
+     * Set address
      *
-     * @param string $title
+     * @param string $address
      *
      * @return Event
      */
-    public function setTitle($title)
+    public function setAddress($address)
     {
-        $this->title = $title;
+        $this->address = $address;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get address
      *
      * @return string
      */
-    public function getTitle()
+    public function getAddress()
     {
-        return $this->title;
+        return $this->address;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set coach
+     *
+     * @param \AppBundle\Entity\Coach $coach
+     *
+     * @return Event
+     */
+    public function setCoach(\AppBundle\Entity\Coach $coach = null)
+    {
+        $this->coach = $coach;
+
+        return $this;
+    }
+
+    /**
+     * Get coach
+     *
+     * @return \AppBundle\Entity\Coach
+     */
+    public function getCoach()
+    {
+        return $this->coach;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Event
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \AppBundle\Entity\City $city
+     *
+     * @return Event
+     */
+    public function setCity(\AppBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \AppBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
-

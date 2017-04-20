@@ -4,16 +4,6 @@
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register '}}) }}
 
                 <div class="form-group row">
-                    {{ form_label(form.firstName,null, {'label_attr':{'class':' col-sm-2 col-form_label '}})  }}
-                    {{ form_widget(form.firstName ,{'attr':{'class':'form_control'}}) }}
-                    {{ form_errors(form.firstName) }}
-                </div>
-                <div class="form-group row">
-                    {{ form_label(form.lastName,null, {'label_attr':{'class':' col-sm-2 col-form_label '}}) }}
-                    {{ form_widget(form.lastName, {'attr':{'class':'form_control'}}) }}
-                    {{ form_errors(form.lastName) }}
-                </div>
-                <div class="form-group row">
                     {{ form_label(form.username,null, {'label_attr':{'class':'col-sm-2 col-form_label'}}) }}
                     {{ form_widget(form.username, {'attr':{'class':'form_control'}}) }}
                     {{ form_errors(form.username) }}

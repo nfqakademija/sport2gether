@@ -2,12 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * City
  *
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="city")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CityRepository")
  */
 class City
@@ -28,6 +29,22 @@ class City
      */
     private $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Coach", mappedBy="category")
+     */
+    private $coaches;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="city")
+     */
+    private $events;
+
+
+    public function __construct()
+    {
+        $this->coaches = new ArrayCollection();
+        $this->events = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +79,72 @@ class City
     {
         return $this->title;
     }
-}
 
+    /**
+     * Add coach
+     *
+     * @param \AppBundle\Entity\Coach $coach
+     *
+     * @return City
+     */
+    public function addCoach(\AppBundle\Entity\Coach $coach)
+    {
+        $this->coaches[] = $coach;
+
+        return $this;
+    }
+
+    /**
+     * Remove coach
+     *
+     * @param \AppBundle\Entity\Coach $coach
+     */
+    public function removeCoach(\AppBundle\Entity\Coach $coach)
+    {
+        $this->coaches->removeElement($coach);
+    }
+
+    /**
+     * Get coaches
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCoaches()
+    {
+        return $this->coaches;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\Event $event
+     *
+     * @return City
+     */
+    public function addEvent(\AppBundle\Entity\Event $event)
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\Event $event
+     */
+    public function removeEvent(\AppBundle\Entity\Event $event)
+    {
+        $this->events->removeElement($event);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+}
