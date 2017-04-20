@@ -2,10 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\City;
 use AppBundle\Entity\Coach;
+use AppBundle\Entity\User;
 
 /**
  * Event
@@ -70,6 +72,15 @@ class Event
      */
     private $city;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User")
+     */
+    private $attendees;
+
+    public function __construct()
+    {
+        $this->attendees = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -252,5 +263,39 @@ class Event
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Add attendee
+     *
+     * @param User $attendee
+     *
+     * @return Event
+     */
+    public function addAttendee(User $attendee)
+    {
+        $this->attendees[] = $attendee;
+
+        return $this;
+    }
+
+    /**
+     * Remove attendee
+     *
+     * @param User $attendee
+     */
+    public function removeAttendee(User $attendee)
+    {
+        $this->attendees->removeElement($attendee);
+    }
+
+    /**
+     * Get attendees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
     }
 }
