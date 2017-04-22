@@ -16,9 +16,11 @@ var dir = {
 
 // use compass to compile sass to css then minify and concatenate to style.css
 gulp.task('css', function(){
-    return gulp.src(dir.assets + 'style/**/*.css')
-        .pipe(cleanCSS())
+    return gulp.src([
+        dir.assets + 'style/**/*.css'
+    ])
         .pipe(concat('style.css'))
+        .pipe(cleanCSS())
         // .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
         .pipe(gulp.dest(dir.dist + 'css'));
 });
@@ -42,9 +44,11 @@ gulp.task('scripts', function() {
         //Third party assets
             dir.npm + 'jquery/dist/jquery.min.js',
             dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            dir.npm + 'materialize-css/dist/js/materialize.min.js',
 
             dir.assets + 'scripts/*.js',
             dir.assets + 'scripts/vendors/jquery.1.11.js'
+
         ])
         .pipe(concat('script.js'))
         .pipe(uglify())
@@ -60,7 +64,7 @@ gulp.task('images', function() {
 
 gulp.task('fonts', function() {
     gulp.src([
-        // dir.npm + 'bootstrap-sass/assets/fonts/**',
+        dir.npm + 'materialize-css/dist/fonts/roboto/**',
         dir.assets + 'fonts/**'
         ])
         .pipe(gulp.dest(dir.dist + 'fonts'));
