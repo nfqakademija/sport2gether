@@ -17,5 +17,4 @@ class UserController extends Controller
 
         return $this->render('AppBundle:User:index.html.twig', array("events" => $events));
     }
-
 }
