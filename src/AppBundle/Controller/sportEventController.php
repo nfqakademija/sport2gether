@@ -16,15 +16,15 @@ class sportEventController extends Controller
     public function createEventAction(Request $request)
     {
         $event = new Event();
-        $form = $this->createForm(EventFormType::class);
-        //check if submited
+        $form = $this->createForm(EventFormType::class, $event);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $event = $form->getData();
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-            //dump($form->getData());die;
+
             $this->addFlash('success', 'Genus created!');
             //return $this->redirectToRoute('createEvent');
         }
