@@ -5,7 +5,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+/*
+ * @Todo
+ */
+//use Symfony\Component\HttpFoundation\Response;
+//$this->get('translator')->trans('Symfony is great')
 
 class EventFormType extends AbstractType
 {
@@ -13,14 +17,14 @@ class EventFormType extends AbstractType
     {
 
         $builder
-            ->add('title',TextType::class,['label' => 'Pavadinimas'])
-            ->add('date',TextType::class)
-            ->add('address',TextType::class)
-            ->add('description',TextType::class)
-            ->add('coach',TextType::class)
-            ->add('category',TextType::class)
-            ->add('city',TextType::class)
-            ->add('attendees',TextType::class)
+            ->add('title',TextType::class,['label' => "Pavadinimas"])
+            ->add('date',TextType::class,['label' => "Data"])
+            ->add('address',TextType::class,['label' => "Adresas"])
+            ->add('description',TextType::class,['label' => "Aprasymas"])
+            ->add('coach',TextType::class,['label' => "Treneris"])
+            ->add('category',TextType::class,['label' => "Kategorija"])
+            ->add('city',TextType::class,['label' => "Miestas"])
+            ->add('attendees',TextType::class,['label' => "Dalyviai"])
         ;
     }
 

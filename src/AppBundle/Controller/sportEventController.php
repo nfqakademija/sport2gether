@@ -25,8 +25,8 @@ class sportEventController extends Controller
             $em->persist($event);
             $em->flush();
 
-            $this->addFlash('success', 'Genus created!');
-            //return $this->redirectToRoute('createEvent');
+            $this->addFlash('success', 'Sekmingai sukurta');
+            return $this->redirectToRoute('createEvent');
         }
         return $this->render('AppBundle:sportEvent:create_event.html.twig', [
             'createEventForm' => $form->createView()
