@@ -2,19 +2,36 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Event;
+use AppBundle\Form\EventFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class sportEventController extends Controller
 {
     /**
      * @Route("/createEvent")
      */
-    public function createEventAction()
+    public function createEventAction(Request $request)
     {
-        return $this->render('AppBundle:sportEvent:create_event.html.twig', array(
-            // ...
-        ));
+        $event = new Event();
+        $form = $this->createForm(EventFormType::class, $event);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush();
+
+            $this->addFlash('success', 'Sekmingai sukurta');
+            return $this->redirectToRoute('createEvent');
+        }
+        return $this->render('AppBundle:sportEvent:create_event.html.twig', [
+            'createEventForm' => $form->createView()
+        ]);
+
     }
 
     /**
