@@ -1,7 +1,9 @@
-{% extends "::base.html.twig" %}
+<div class="col-xs-12">
+    <h1>Search for Event</h1>
+    {{ form_start(eventSearchForm) }}
+    {{ form_widget(eventSearchForm) }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    {{ form_end(eventSearchForm) }}
+</div>
 
-{% block title %}AppBundle:sportEvent:searchEvent{% endblock %}
 
-{% block body %}
-<h1>Welcome to the sportEvent:searchEvent page</h1>
-{% endblock %}

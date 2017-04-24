@@ -2,19 +2,63 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\EventFormType;
+use AppBundle\Form\EventSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class sportEventController extends Controller
 {
     /**
+     * @Route("/showEvents")
+     */
+    public function searchEventsAction(Request $request)
+    {
+        $form = $this->createForm(EventSearchType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data =$form->getData();
+             $title = $data['title'];
+             $city = $data['city']->getTitle();
+             $category = $data['category']->getTitle();
+             $em = $this->getDoctrine()->getManager();
+             $events = $em->getRepository('AppBundle:Event')
+                 ->findAllByTitle($title,$city,$category);
+
+
+             if(!$events){
+                 throw $this->createNotFoundException('Such event does not exist!');
+             }
+
+             return $this->render('AppBundle:sportEvent:view_event.html.twig',[
+                 'events'=>$events
+             ]);
+        }
+
+        return $this->render('AppBundle:sportEvent:search_event.html.twig', [
+            'eventSearchForm' => $form->createView()
+        ]);
+    }
+
+
+    /**
      * @Route("/createEvent")
      */
-    public function createEventAction()
+    public function createEventAction(Request $request)
     {
-        return $this->render('AppBundle:sportEvent:create_event.html.twig', array(
-            // ...
-        ));
+        $form = $this->createForm(EventFormType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());die;
+        }
+
+        return $this->render('AppBundle:sportEvent:create_event.html.twig', [
+            'eventForm' => $form->createView()
+        ]);
     }
 
     /**

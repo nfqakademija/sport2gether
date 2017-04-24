@@ -1,7 +1,8 @@
-{% extends "::base.html.twig" %}
+{% extends "::basic_layout.html.twig" %}
 
-{% block title %}AppBundle:sportEvent:viewEvent{% endblock %}
-
-{% block body %}
-<h1>Welcome to the sportEvent:viewEvent page</h1>
+{% block carousel %}
+{% for event in events %}
+<h1>{{ event.title }}</h1>
+<h1>{{ event.city }}</h1>
+{% endfor %}
 {% endblock %}

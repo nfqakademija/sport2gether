@@ -18,6 +18,13 @@
     {% block body %}
     {% endblock %}
     {% block content %}{% endblock %}
+    {% block searchForm%}
+        <div class="">
+            {{ render(controller(
+            'AppBundle:sportEvent:searchEvents'
+            )) }}
+        </div>
+    {% endblock %}
 </div>
 {% block footer %}
 {% include "::inc/footer.html.twig" %}
