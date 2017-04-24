@@ -14,8 +14,7 @@ var dir = {
     npm: './node_modules/',
 };
 
-// use compass to compile sass to css then minify and concatenate to style.css
-gulp.task('css', function(){
+gulp.task('css', ['sass'], function(){
     return gulp.src([
         dir.assets + 'style/**/*.css'
     ])
@@ -37,6 +36,13 @@ gulp.task('compass', function() {
             this.emit('end');
         })
     .pipe(gulp.dest('./src/AppBundle/Resources/style'));
+});
+
+gulp.task('sass', function() {
+    gulp.src(dir.npm + 'bootstrap-sass/assets/stylesheets/bootstrap.scss')
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(concat('bootstrap.css'))
+        .pipe(gulp.dest(dir.dist + 'css'));
 });
 
 gulp.task('scripts', function() {

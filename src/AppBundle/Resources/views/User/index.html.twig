@@ -1,7 +1,62 @@
 {% extends "::basic_layout.html.twig" %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+    <nav class="transparent user_nav">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center black-text">Sport2together</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse black-text hide-on-med-and-up">
+                <i class="material-icons">menu</i></a>
+
+            <ul class="left hide-on-small-and-down black-text">
+                <li><a href="#"><i class="material-icons grey-text">person_pin</i></a></li>
+                <li><a href="#" class="black-text"><b>Create event</b></a></li>
+            </ul>
+            <ul class="right hide-on-small-and-down black-text">
+                <li><a href="#" class="black-text">Atsijungti</a></li>
+            </ul>
+            {# Side navigation #}
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="#"><i class="material-icons">person_pin</i>Profile</a></li>
+                <li><a href="#"><i class="material-icons">playlist_add</i>Create event</a></li>
+                <li><a href="#" class="black-text">Atsijungti</a></li>
+            </ul>
+            </a>
+        </div>
+    </nav>
+
+    <div class="user_header">
+        <div class="row">
+            <div class="col s12 center">
+                <h3>Raskite treniruotę</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="user_search container">
+        <div class="row">
+            <div class="col l6 offset-l3 s8 offset-s2">
+                <nav class="transparent">
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" required="">
+                                <label class="label-icon" for="search"><i
+                                            class="material-icons black-text">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block content %}
@@ -9,7 +64,7 @@
         <div class="row">
 
             {% for event in events %}
-                <div class="col s12 m3">
+                <div class="col s12 m4">
                     <div class="card">
                         <div class="card-image">
                             <img src="/images/cycling.jpg">

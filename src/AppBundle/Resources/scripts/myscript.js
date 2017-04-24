@@ -53,7 +53,7 @@ $('#btnRL2').click(function(){
 	$('#readmore2').animate({height:'0px'}, 500);
 });
 
-	$(function () {
+$(function () {
   $("#mydd a").on('click',function (e) {
   	e.preventDefault();
     $("#dropdownMenu1").html($(this).html() + ' <span class="downicon"></span>');
@@ -72,3 +72,8 @@ $(function () {
     $("#dropdownMenu3").html($(this).html() + ' <span class="downicon"></span>');
   });
 });
+
+$( document ).ready( (function() {
+        $(".button-collapse").sideNav();
+    }())
+);
