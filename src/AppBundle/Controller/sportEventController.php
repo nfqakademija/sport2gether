@@ -22,11 +22,13 @@ class sportEventController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
+            /**todo need to add logged user ID*/
+            //$event->setCoach(1);
             $em->persist($event);
             $em->flush();
 
             $this->addFlash('success', 'Sekmingai sukurta');
-            return $this->redirectToRoute('createEvent');
+            return $this->redirectToRoute('app_sportevent_createevent');
         }
         return $this->render('AppBundle:sportEvent:create_event.html.twig', [
             'createEventForm' => $form->createView()

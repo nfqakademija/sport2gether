@@ -1,6 +1,10 @@
 <?php
 
 namespace AppBundle\Form;
+use AppBundle\Entity\Event;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,13 +22,21 @@ class EventFormType extends AbstractType
 
         $builder
             ->add('title',TextType::class,['label' => "Pavadinimas"])
-            ->add('date',TextType::class,['label' => "Data"])
+            ->add('date',DateTimeType::class,['label' => "Data"])
             ->add('address',TextType::class,['label' => "Adresas"])
             ->add('description',TextType::class,['label' => "Aprasymas"])
-            ->add('coach',TextType::class,['label' => "Treneris"])
-            ->add('category',TextType::class,['label' => "Kategorija"])
-            ->add('city',TextType::class,['label' => "Miestas"])
-            ->add('attendees',TextType::class,['label' => "Dalyviai"])
+            //->add('coach',TextType::class,['label' => "Treneris"])
+            ->add('category', EntityType::class, array(
+                'class' => 'AppBundle:Category',
+                'label' =>'Kategorija',
+                'placeholder' => '-'
+            ))
+            ->add('city', EntityType::class, array(
+                'class' => 'AppBundle:City',
+                'label' =>'Miestas',
+                'placeholder' => '-'
+            ))
+
         ;
     }
 
