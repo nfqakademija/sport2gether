@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class sportEventController extends Controller
 {
     /**
-     * @Route("/showEvents")
+     * @Route("/showEvents", name="searchEvents")
      */
     public function searchEventsAction(Request $request)
     {
