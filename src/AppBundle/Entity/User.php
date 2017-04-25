@@ -1,14 +1,15 @@
 <?php
+// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
-
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Coach;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
 {
@@ -20,69 +21,37 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\OneToOne(targetEntity="Coach", mappedBy="user")
      */
+    private $coach;
 
-    protected $firstName;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-
-    protected $lastName;
-    
     public function __construct()
     {
         parent::__construct();
         // your own logic
     }
 
-
     /**
-     * Set firstName
+     * Set user
      *
-     * @param string $firstName
+     * @param Coach $user
      *
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setCoach(Coach $coach = null)
     {
-        $this->firstName = $firstName;
+        $this->coach = $coach;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get user
      *
-     * @return string
+     * @return Coach
      */
-    public function getFirstName()
+    public function getCoach()
     {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
+        return $this->coach;
     }
 }

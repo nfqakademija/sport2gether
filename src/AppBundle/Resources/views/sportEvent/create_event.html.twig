@@ -1,7 +1,12 @@
-{% extends "::base.html.twig" %}
+{% extends "::basic_layout.html.twig" %}
 
-{% block title %}AppBundle:sportEvent:createEvent{% endblock %}
 
-{% block body %}
-<h1>Welcome to the sportEvent:createEvent page</h1>
+
+{% block content %}
+
+    {{ form_start(createEventForm) }}
+    {{ form_widget(createEventForm) }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    {{ form_end(createEventForm) }}
+
 {% endblock %}

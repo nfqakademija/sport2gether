@@ -1,5 +1,6 @@
 @import "colors";
 
+// Group search bar
 .groupSearch {
     &--centered {
         text-align: center;
@@ -24,4 +25,44 @@
     &__button {
     	font-size: 30px;
     }
+}
+
+// Login / Registration forms
+.demo-card-wide.mdl-card {
+  width: 50%;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+}
+
+.demo-card__h1 {
+  font-size: 36px;
+}
+
+.demo-card__button {
+  margin: 15px !important;
+}
+.demo-card__textfield {
+  max-width: 100% !important;
+  min-width: 50% !important;
+}
+
+.mdl-textfield__label:after {
+  background-color: $teal !important;
+}
+
+.mdl-textfield__label {
+  color: black !important;
+}
+
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+  color: black !important;
+}
+
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+  color: black !important;
 }
