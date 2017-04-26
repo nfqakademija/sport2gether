@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Event;
+use AppBundle\Entity\EventSearch;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,19 +18,23 @@ class EventSearchType extends AbstractType
         $builder
             ->add('city', EntityType::class, array(
                 'class' => 'AppBundle:City',
-                'placeholder' => 'Choose a city'
+                'placeholder' => 'Choose a city',
+                'required' => false
             ))
             ->add('category', EntityType::class, array(
                 'class' => 'AppBundle:Category',
-                'placeholder' => 'Choose a category'
+                'placeholder' => 'Choose a category',
+                'required' => false
             ))
-            ->add('title');
+            ->add('title',null, array(
+                'required' => false
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-
+            'data_class' =>EventSearch::class
         ));
     }
 

@@ -12,16 +12,23 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findAllByTitle($title,$city='', $category='')
     {
-        return $this->createQueryBuilder('event')
+        $query =  $this->createQueryBuilder('event')
             ->leftJoin('event.city','ecity')
             ->leftJoin('event.category','ecategory')
             ->andWhere('event.title LIKE :title')
-            ->andWhere('ecity.title = :city')
-            ->andWhere('ecategory.title = :category')
-            ->setParameter('title','%'.$title.'%')
-            ->setParameter('city',$city)
-            ->setParameter('category',$category)
-            ->orderBy('event.date','DESC')
+            ->setParameter('title','%'.$title.'%');
+
+        if($city){
+            $query->andWhere('ecity.title = :city')
+                  ->setParameter('city',$city);
+        }
+
+        if($category) {
+            $query->andWhere('ecategory.title = :category')
+                  ->setParameter('category', $category);
+        }
+
+         return $query->orderBy('event.date','DESC')
             ->getQuery()
             ->execute();
     }

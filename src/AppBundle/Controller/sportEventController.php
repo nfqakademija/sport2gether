@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\EventSearch;
 use AppBundle\Form\EventFormType;
 use AppBundle\Form\EventSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,15 +16,16 @@ class sportEventController extends Controller
      */
     public function searchEventsAction(Request $request)
     {
-        $form = $this->createForm(EventSearchType::class);
+        $eventSearch = new EventSearch();
+        $form = $this->createForm(EventSearchType::class, $eventSearch);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data =$form->getData();
-             $title = $data['title'];
-             $city = $data['city']->getTitle();
-             $category = $data['category']->getTitle();
+
+            $title = $eventSearch->getTitle();
+            $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
+            $category = $eventSearch->getCategory() ? $eventSearch->getCategory()->getTitle() : null;
              $em = $this->getDoctrine()->getManager();
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city,$category);
