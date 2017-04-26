@@ -15,7 +15,7 @@ var dir = {
 };
 
 // use compass to compile sass to css then minify and concatenate to style.css
-gulp.task('css', ['compass'], function(){
+gulp.task('css', function(){
     return gulp.src(dir.assets + 'style/**/*.css')
         .pipe(cleanCSS())
         .pipe(concat('style.css'))
@@ -41,12 +41,10 @@ gulp.task('scripts', function() {
     gulp.src([
         //Third party assets
             dir.npm + 'jquery/dist/jquery.min.js',
-            // dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
 
-            // Main JS file
-            // dir.assets + 'scripts/'
-
-            dir.assets + 'scripts/**/*.js'
+            dir.assets + 'scripts/*.js',
+            dir.assets + 'scripts/vendors/jquery.1.11.js'
         ])
         .pipe(concat('script.js'))
         .pipe(uglify())
@@ -62,7 +60,7 @@ gulp.task('images', function() {
 
 gulp.task('fonts', function() {
     gulp.src([
-        dir.npm + 'bootstrap-sass/assets/fonts/**',
+        // dir.npm + 'bootstrap-sass/assets/fonts/**',
         dir.assets + 'fonts/**'
         ])
         .pipe(gulp.dest(dir.dist + 'fonts'));

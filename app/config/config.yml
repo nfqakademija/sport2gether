@@ -71,18 +71,16 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
-    registration:
-        form:
-            type: AppBundle\Form\RegistrationType
     from_email:
         address: "sport2gether"
         sender_name: "studentai"
 
 easy_admin:
     entities:
+        - AppBundle\Entity\City
+        - AppBundle\Entity\Category
         - AppBundle\Entity\User
+        - AppBundle\Entity\Coach
+        - AppBundle\Entity\Event
 
 
-
-framework:
-    translator: { fallbacks: [en] }
