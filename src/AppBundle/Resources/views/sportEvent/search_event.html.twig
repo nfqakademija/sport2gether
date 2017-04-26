@@ -1,9 +1,29 @@
-<div class="col-xs-12">
-    <h1>Search for Event</h1>
-    {{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST'}) }}
+<nav class="navbar navbar-default midle-nav">
+    <div class="collapse navbar-collapse" id="navbarmidle">
+        <div class="searchtxt">
+            <h1>SEARCH Events</h1>
+        </div>
+    {{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST' }) }}
+        <div class="navbar-form navbar-left searchformmargin" role="search">
+            <div class="form-group">
+                {{ form_widget(eventSearchForm.title, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
+            </div>
+        </div>
+        <ul class="nav navbar-nav navbarborder">
+            <li class="li-minyear">
+                <a class="btn  dropdown-toggle btn-costume"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="glyphicon glyphicon-chevron-down downicon"></span></a>
+                    {{ form_widget(eventSearchForm.category, {'attr':{'class':'dropdown-menu', 'id':'mydd'}}) }}
+            </li>
+            <li class="li-minyear"><a class="btn  dropdown-toggle btn-costume"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Min Year <span class="glyphicon glyphicon-chevron-down downicon"></span></a>
+                    {{ form_widget(eventSearchForm.city, {'attr':{'class':'dropdown-menu', 'id':'mydd2'}}) }}
+            </li>
+            <li class="li-search"> <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button></li>
+        </ul>
     {{ form_widget(eventSearchForm) }}
-    <button type="submit" class="btn btn-primary">Save</button>
     {{ form_end(eventSearchForm) }}
+    </div>
+</nav>
 </div>
+
 
 
