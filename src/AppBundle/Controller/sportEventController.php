@@ -2,19 +2,65 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\EventSearch;
+use AppBundle\Form\EventFormType;
+use AppBundle\Form\EventSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class sportEventController extends Controller
 {
     /**
+     * @Route("/showEvents", name="searchEvents")
+     */
+    public function searchEventsAction(Request $request)
+    {
+        $eventSearch = new EventSearch();
+        $form = $this->createForm(EventSearchType::class, $eventSearch);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $title = $eventSearch->getTitle();
+            $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
+            $category = $eventSearch->getCategory() ? $eventSearch->getCategory()->getTitle() : null;
+             $em = $this->getDoctrine()->getManager();
+             $events = $em->getRepository('AppBundle:Event')
+                 ->findAllByTitle($title,$city,$category);
+
+
+             if(!$events){
+                 throw $this->createNotFoundException('Such event does not exist!');
+             }
+
+             return $this->render('AppBundle:sportEvent:view_event.html.twig',[
+                 'events'=>$events
+             ]);
+        }
+
+        return $this->render('AppBundle:sportEvent:search_event.html.twig', [
+            'eventSearchForm' => $form->createView()
+        ]);
+    }
+
+
+    /**
      * @Route("/createEvent")
      */
-    public function createEventAction()
+    public function createEventAction(Request $request)
     {
-        return $this->render('AppBundle:sportEvent:create_event.html.twig', array(
-            // ...
-        ));
+        $form = $this->createForm(EventFormType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());die;
+        }
+
+        return $this->render('AppBundle:sportEvent:create_event.html.twig', [
+            'eventForm' => $form->createView()
+        ]);
     }
 
     /**

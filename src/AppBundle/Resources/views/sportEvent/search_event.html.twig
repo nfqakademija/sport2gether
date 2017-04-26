@@ -1,7 +1,31 @@
-{% extends "::base.html.twig" %}
+<nav class="navbar navbar-default midle-nav">
+    <div class="collapse navbar-collapse" id="navbarmidle">
+        <div class="searchtxt">
+            <h1>SEARCH Events</h1>
+        </div>
+    {{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST' }) }}
+        <div class="navbar-form navbar-left searchformmargin" role="search">
+            <div class="form-group">
+                {{ form_widget(eventSearchForm.title, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
+            </div>
+        </div>
+        <div class="navbar-form navbar-left searchformmargin" role="search">
+            <div class="form-group">
+                {{ form_widget(eventSearchForm.category, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
+            </div>
+        </div>
+        <div class="navbar-form navbar-left searchformmargin" role="search">
+            <div class="form-group">
+                {{ form_widget(eventSearchForm.city, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
+            </div>
+        </div>
+        <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
 
-{% block title %}AppBundle:sportEvent:searchEvent{% endblock %}
+    {{ form_widget(eventSearchForm) }}
+    {{ form_end(eventSearchForm) }}
+    </div>
+</nav>
+</div>
 
-{% block body %}
-<h1>Welcome to the sportEvent:searchEvent page</h1>
-{% endblock %}
+
+
