@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\City;
 use AppBundle\Entity\Coach;
@@ -77,10 +78,37 @@ class Event
      */
     private $attendees;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     *
+     * @Assert\File(mimeTypes={ "image/png" })
+     */
+    private $image;
+
     public function __construct()
     {
         $this->attendees = new ArrayCollection();
     }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+
+    /**
+     * @param string $imageUrl
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
 
     /**
      * Get id
