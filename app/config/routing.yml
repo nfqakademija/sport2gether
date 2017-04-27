@@ -2,6 +2,11 @@ app:
     resource: "@AppBundle/Controller"
     type: annotation
 
+app.user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type: annotation
+    prefix: /user
+#
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
