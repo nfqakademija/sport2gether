@@ -31,11 +31,6 @@ class sportEventController extends Controller
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city,$category);
 
-
-             if(!$events){
-                 throw $this->createNotFoundException('Such event does not exist!');
-             }
-
              return $this->render('AppBundle:sportEvent:view_event.html.twig',[
                  'events'=>$events
              ]);

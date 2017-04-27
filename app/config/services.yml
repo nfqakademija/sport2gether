@@ -16,3 +16,9 @@ services:
         class: AppBundle\Services\FileUploader
         arguments: ['%images_directory%']
 
+     app.redirect_after_registration_subscriber:
+        class: AppBundle\EventListener\RedirectAfterRegistrationSubscriber
+        autowire: true
+        tags:
+            - { name: kernel.event_subscriber }
+
