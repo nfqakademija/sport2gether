@@ -10,7 +10,7 @@
 
 
 .allcontain{
-	max-width: 1366px;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -387,18 +387,15 @@ font-size: 10pt;
 	background: rgba(248,199,45,.8);
  	border: 0px;
  	position: absolute;
- 	bottom: 0px;
+ 	bottom: 20%;
  	width: 100%;
  	margin: 0px;
  	border-radius: 0px;
- 
- 
 }
 #navbarmidle{
 		padding-left: 6.6%;
 		padding-bottom: 26px;
 		width: 100%;
- 
 }
 .searchtxt{
 	max-width: 1349px;
@@ -411,7 +408,6 @@ font-size: 10pt;
 	margin-bottom: 14px;
 	padding-left: 15px;
 	max-width: 1349px;
-
 }
 .navbar-default .textcostume:hover,
 .navbar-default .textcostume:focus {
@@ -543,11 +539,7 @@ font-size: 10pt;
 }
 @media only screen and (min-width: 768px) and (max-width: 1365px){
 	.midle-nav{
-		position: relative;
-		background: rgb(248,199,45);
-		top:0px;
- 
- 
+		position: absolute;
 }
  
 .searchtxt>h1{
@@ -672,9 +664,7 @@ padding-left: 0px;
 	 	margin-left: 0px;
 	 }
 .midle-nav{
-		position:relative;
-		top:0px;
-		background: rgba(248,199,45,.9)
+		bottom: 0%;
 	}
 	.navbarborder{
 		margin-left: 0px;
@@ -1654,9 +1644,6 @@ height: 30px;
 }
  
 @media screen and (max-width:600px){
-	.footer{
-		margin-top: 15px;
-	}
 	.copyright{
 		float: none;
 	text-align: center;
@@ -1685,4 +1672,58 @@ height: 30px;
       -ms-transition-duration: 0.8s;
        -o-transition-duration: 0.8s;
           transition-duration: 0.8s;
+}
+
+/* Modal */
+
+.modal--centered {
+	top: 10%;
+}
+
+.modal-header--noBorder {
+	border: none;
+	text-align: center;
+}
+
+.modal-title--big {
+	font-family: "Roboto", sans-serif;
+	font-size: 3.28rem;
+	margin: 1.14rem 0 .912rem 0;
+	color: rgba(0,0,0,0.87);
+}
+
+.modal-content--noBorder {
+	border: none;
+	border-radius: 2px;
+}
+
+.modal-dialog--medium {
+	max-width: 85%;
+	margin: auto;
+}
+
+.btn-block--medium {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.form-group--full {
+	width: 100%;
+}
+
+/* Size */
+
+.full-screen {
+    min-width: 100%;
+    max-width: 140% !important;
+    min-height: 97.8vh;
+}
+
+@media screen and ( max-width: 768px ) and (orientation: portrait) {
+	.full-screen {
+    	min-height: calc(97.8vh - 292px);
+	}
+	.midle-nav {
+    	position: relative;
+	}
 }
