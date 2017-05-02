@@ -9,7 +9,7 @@ use AppBundle\Entity\Event;
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="user")
+     * @Route("/", name="show_all_events")
      */
     public function indexAction()
     {

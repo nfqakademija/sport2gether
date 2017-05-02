@@ -31,11 +31,6 @@ class sportEventController extends Controller
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city,$category);
 
-
-             if(!$events){
-                 throw $this->createNotFoundException('Such event does not exist!');
-             }
-
              return $this->render('AppBundle:sportEvent:view_event.html.twig',[
                  'events'=>$events
              ]);
@@ -58,6 +53,10 @@ class sportEventController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $file = $event->getImage();
+            $fileName = $this->get('app.image_uploader')->upload($file);
+            $event->setImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             /**todo need to add logged user ID*/
             //$event->setCoach(1);
@@ -65,7 +64,7 @@ class sportEventController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Sekmingai sukurta');
-            return $this->redirectToRoute('app_sportevent_createevent');
+            return $this->redirectToRoute('show_all_events');
         }
         return $this->render('AppBundle:sportEvent:create_event.html.twig', [
             'createEventForm' => $form->createView()
