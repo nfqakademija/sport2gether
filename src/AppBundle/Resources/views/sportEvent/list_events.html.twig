@@ -3,5 +3,9 @@
 {% block title %}AppBundle:sportEvent:listEvents{% endblock %}
 
 {% block body %}
-<h1>Welcome to the sportEvent:listEvents page</h1>
+<h1>{{ event.title }}</h1>
+{% for comment in comments %}
+<h1>{{ comment.content}}</h1>
+<h1>{{ comment.createdAtDate|date("y-m-d H:i:s") }}</h1>
+{% endfor %}
 {% endblock %}
