@@ -36,7 +36,7 @@ class sportEventController extends Controller
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city,$category);
 
-             return $this->render('AppBundle:sportEvent:view_event.html.twig',[
+             return $this->render('@App/User/index.html.twig',[
                  'events'=>$events
              ]);
         }
@@ -98,12 +98,17 @@ class sportEventController extends Controller
     }
 
     /**
-     * @Route("/viewEvent")
+     * @Route("/viewEvent/{id}", name="viewEvent")
      */
-    public function viewEventAction()
+    public function viewEventAction($id, Request $request)
     {
-        return $this->render('AppBundle:sportEvent:view_event.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $event = $repository->find($id);
+
+
+        return $this->render('AppBundle:sportEvent:event_item.html.twig', array(
+            'event' => $event
         ));
     }
 
@@ -169,7 +174,7 @@ class sportEventController extends Controller
     }
 
     /**
-     * @Route("/attend/{id}", name="attendevent")
+     * @Route("/attend/{id}", name="attendEvent")
      */
     public function attendEventAction($id)
     {

@@ -18,6 +18,7 @@
                         <div class="card-content">
                             <span>{{ event.getDate|date('Y-m-d H:i:s') }}</span>
                             <span>{{ event.getCity }}</span>
+                            <a href="{{ path('viewEvent', {'id': event.id}) }}">Peržiūrėti</a>
                         </div>
                     </div>
                 </div>
