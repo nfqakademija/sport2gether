@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\EventSearch;
+use AppBundle\Entity\Event;
 use AppBundle\Form\EventFormType;
 use AppBundle\Form\EventSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,16 +52,25 @@ class sportEventController extends Controller
      */
     public function createEventAction(Request $request)
     {
-        $form = $this->createForm(EventFormType::class);
+        $event = new Event();
+        $form = $this->createForm(EventFormType::class, $event);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());die;
-        }
 
+            $em = $this->getDoctrine()->getManager();
+            /**todo need to add logged user ID*/
+            //$event->setCoach(1);
+            $em->persist($event);
+            $em->flush();
+
+            $this->addFlash('success', 'Sekmingai sukurta');
+            return $this->redirectToRoute('app_sportevent_createevent');
+        }
         return $this->render('AppBundle:sportEvent:create_event.html.twig', [
-            'eventForm' => $form->createView()
+            'createEventForm' => $form->createView()
         ]);
+
     }
 
     /**
@@ -84,12 +94,17 @@ class sportEventController extends Controller
     }
 
     /**
-     * @Route("/viewEvent")
+     * @Route("/viewEvent/{id}")
      */
-    public function viewEventAction()
+    public function viewEventAction($id, Request $request)
     {
-        return $this->render('AppBundle:sportEvent:view_event.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $event = $repository->find($id);
+
+
+        return $this->render('AppBundle:sportEvent:event_item.html.twig', array(
+            'event' => $event
         ));
     }
 
