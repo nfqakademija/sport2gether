@@ -15,8 +15,11 @@
 </head>
 
 <body>
+    {% block userForm %}
+    {% endblock %}
     {% block body %}
     {% endblock %}
+
 
 {% block javascripts %}
     <script src="{{ asset("js/script.js") }}"></script>
