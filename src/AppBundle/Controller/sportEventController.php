@@ -2,13 +2,18 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\EventSearch;
 use AppBundle\Entity\Event;
 use AppBundle\Form\EventFormType;
 use AppBundle\Form\EventSearchType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\CssSelector\XPath\Extension\CombinationExtension;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class sportEventController extends Controller
 {
@@ -31,7 +36,7 @@ class sportEventController extends Controller
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city,$category);
 
-             return $this->render('AppBundle:sportEvent:view_event.html.twig',[
+             return $this->render('@App/User/index.html.twig',[
                  'events'=>$events
              ]);
         }
@@ -93,12 +98,17 @@ class sportEventController extends Controller
     }
 
     /**
-     * @Route("/viewEvent")
+     * @Route("/viewEvent/{id}", name="viewEvent")
      */
-    public function viewEventAction()
+    public function viewEventAction($id, Request $request)
     {
-        return $this->render('AppBundle:sportEvent:view_event.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $event = $repository->find($id);
+
+
+        return $this->render('AppBundle:sportEvent:event_item.html.twig', array(
+            'event' => $event
         ));
     }
 
@@ -120,6 +130,77 @@ class sportEventController extends Controller
         return $this->render('AppBundle:sportEvent:list_events.html.twig', array(
             // ...
         ));
+    }
+
+    /**
+     * @Route("/addComment/{id}", name="addComment")
+     * @Method({"POST","GET"})
+     */
+    public function addCommentAction(Request $request, $id)
+    {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->getUser();
+            $comment = new Comment();
+            $content = $request->getContent('commit');
+            $comment->setContent($content);
+            $comment->setCreatedAtDate(new \DateTime('NOW'));
+            $comment->setAuthor($user);
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+            $event = $repository->findOneBy(['id' => $id]);
+            $comment->setEvent($event);
+            $event->addComment($comment);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->persist($event);
+            $em->flush();
+
+            return new Response();
+        }
+        else {
+          return $this->redirectToRoute('fos_user_security_login');
+        }
+    }
+
+    /**
+     * @Route("/showComments/{id}", name="showComments")
+     * @Method({"GET"})
+     */
+    public function showCommentsAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+        $event = $repository->findOneBy(['id'=>$id]);
+        $comments = $event->getComments();
+        return new JsonResponse($comments);
+    }
+
+    /**
+     * @Route("/attend/{id}", name="attendEvent")
+     */
+    public function attendEventAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+        $event = $repository->findOneBy(['id'=>$id]);
+        $user = $this->getUser();
+        $event->addAttendee($user);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($event);
+        $em->flush();
+        return new Response();
+    }
+
+    /**
+     * @Route("/unattend/{id}", name="unattendEvent")
+     */
+    public function unattendEventAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+        $event = $repository->findOneBy(['id'=>$id]);
+        $user = $this->getUser();
+        $event->removeAttendee($user);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($event);
+        $em->flush();
+        return new Response();
     }
 
 }

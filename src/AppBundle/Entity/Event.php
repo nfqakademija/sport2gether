@@ -9,6 +9,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\City;
 use AppBundle\Entity\Coach;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Comment;
 
 /**
  * Event
@@ -62,6 +63,11 @@ class Event
     private $coach;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="event")
+     */
+    private $comments;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="events")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
@@ -89,6 +95,7 @@ class Event
     public function __construct()
     {
         $this->attendees = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -325,5 +332,43 @@ class Event
     public function getAttendees()
     {
         return $this->attendees;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param Comment $comment
+     *
+     * @return Event
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function hasAttendee(User $user){
+        return $this->attendees->contains($user);
     }
 }
