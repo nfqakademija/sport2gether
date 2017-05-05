@@ -31,10 +31,9 @@ class sportEventController extends Controller
 
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
-            $category = $eventSearch->getCategory() ? $eventSearch->getCategory()->getTitle() : null;
              $em = $this->getDoctrine()->getManager();
              $events = $em->getRepository('AppBundle:Event')
-                 ->findAllByTitle($title,$city,$category);
+                 ->findAllByTitle($title,$city);
 
              return $this->render('@App/User/index.html.twig',[
                  'events'=>$events
