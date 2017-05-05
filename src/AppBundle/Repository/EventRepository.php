@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
+
 /**
  * EventRepository
  *
@@ -25,5 +27,22 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
          return $query->orderBy('event.date','DESC')
             ->getQuery()
             ->execute();
+    }
+
+    public function findAllOrderByDate()
+    {
+        return $this->createQueryBuilder('event')
+                    ->orderBy('event.date','DESC')
+                    ->getQuery()
+                    ->execute();
+    }
+
+    public function findUserEvents(User $user)
+    {
+        return $this->createQueryBuilder('event')
+                        ->andWhere(':user MEMBER OF event.attendees')
+                        ->setParameter(':user',$user)
+                        ->getQuery()
+                        ->execute();
     }
 }

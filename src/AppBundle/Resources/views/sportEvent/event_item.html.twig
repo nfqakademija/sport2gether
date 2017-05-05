@@ -37,9 +37,9 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="text-right">
                             {% if event.hasAttendee(app.user) %}
-                            <a id ="leaveEvent" class="btn btn-success js-join-event" data-id="{{ event.id }}">Whoa, you are here!</a>
+                            <a id ="leaveEvent" class="btn btn-success js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">Whoa, you are here!</a>
                             {% else %}
-                            <a id ="joinEvent" class="btn btn-success js-join-event" data-id="{{ event.id }}">Join Event</a>
+                            <a id ="joinEvent" class="btn btn-success js-join-event" data-id="{{ event.id }}" data-url="{{ path('attendEvent',{'id':event.getId}) }}">Join Event</a>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -59,7 +59,7 @@
                         </div>
                     {% endif %}
                     <hr>
-                    {%  for comment in event.comments %}
+                    {%  for comment in event.comments|sort|reverse %}
                     <div class="row">
                         <div class="col-md-12">
                             <span class="glyphicon glyphicon-star"></span>
@@ -67,8 +67,8 @@
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-s H:s") }}</span>
+                            {{ comment.author.username }}
+                            <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:s") }}</span>
                             <p>{{ comment.content }}</p>
                         </div>
                     </div>

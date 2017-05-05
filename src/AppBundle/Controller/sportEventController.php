@@ -202,4 +202,21 @@ class sportEventController extends Controller
         return new Response();
     }
 
+    /**
+     * @Route("/myEvents", name="myEvents")
+     */
+    public function viewMyEventsAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findUserEvents($user);
+
+
+        return $this->render('@App/User/index.html.twig', array(
+            'events' => $events
+        ));
+    }
+
+
 }

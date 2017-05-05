@@ -10,7 +10,7 @@
                 console.error(err);
             },
             success:function(data){
-                console.log(comment);
+                location.reload();
             },
             complete:function(){
                 $("#myform")[0].reset();
