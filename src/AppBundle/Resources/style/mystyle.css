@@ -505,13 +505,27 @@ font-size: 10pt;
 .searchnav{
 	margin-right: 7.3%;
 }
+.searchbutton-container {
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+}
+@media only screen and ( max-width: 767px ) {
+    .searchbutton-container {
+        height: 0;
+        line-height: 0;
+    }
+}
+.glyphicon {
+    vertical-align: middle;
+    top: -2px;
+}
 .searchbutton{
 	border: 0px;
 	background: none;
 	background-color: none;
 	font-size: 13pt;
 	color: #fff;
-	padding-top: 20px;
 }
 .btn-costume{
 	border-radius: 0px;
@@ -1719,7 +1733,7 @@ height: 30px;
     min-height: 97.8vh;
 }
 
-@media screen and ( max-width: 768px ) and (orientation: portrait) {
+@media only screen and ( max-width: 768px ) and (orientation: portrait) {
 	.full-screen {
     	min-height: calc(97.8vh - 292px);
 	}
@@ -1727,3 +1741,4 @@ height: 30px;
     	position: relative;
 	}
 }
+

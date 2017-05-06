@@ -14,7 +14,10 @@
                 {{ form_widget(eventSearchForm.city, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
             </div>
         </div>
-        <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
+
+        <div class="navbar-left searchbutton-container" role="search">
+            <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
+        </div>
 
     {{ form_widget(eventSearchForm) }}
     {{ form_end(eventSearchForm) }}
