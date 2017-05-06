@@ -45,3 +45,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administrator/, role: ROLE_ADMIN }
+        - { path: ^/attend, role: ROLE_USER }
+        - { path: ^/unattend, role: ROLE_USER }
+        - { path: ^/createEvent, role: ROLE_USER }
+        - { path: ^/myEvents, role: ROLE_USER }

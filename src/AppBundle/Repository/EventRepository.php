@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
+
 /**
  * EventRepository
  *
@@ -10,11 +12,10 @@ namespace AppBundle\Repository;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllByTitle($title,$city='', $category='')
+    public function findAllByTitle($title,$city='')
     {
         $query =  $this->createQueryBuilder('event')
             ->leftJoin('event.city','ecity')
-            ->leftJoin('event.category','ecategory')
             ->andWhere('event.title LIKE :title')
             ->setParameter('title','%'.$title.'%');
 
@@ -23,13 +24,25 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
                   ->setParameter('city',$city);
         }
 
-        if($category) {
-            $query->andWhere('ecategory.title = :category')
-                  ->setParameter('category', $category);
-        }
-
          return $query->orderBy('event.date','DESC')
             ->getQuery()
             ->execute();
+    }
+
+    public function findAllOrderByDate()
+    {
+        return $this->createQueryBuilder('event')
+                    ->orderBy('event.date','DESC')
+                    ->getQuery()
+                    ->execute();
+    }
+
+    public function findUserEvents(User $user)
+    {
+        return $this->createQueryBuilder('event')
+                        ->andWhere(':user MEMBER OF event.attendees')
+                        ->setParameter(':user',$user)
+                        ->getQuery()
+                        ->execute();
     }
 }

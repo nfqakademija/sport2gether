@@ -21,11 +21,6 @@ class EventSearchType extends AbstractType
                 'placeholder' => 'Choose a city',
                 'required' => false
             ))
-            ->add('category', EntityType::class, array(
-                'class' => 'AppBundle:Category',
-                'placeholder' => 'Choose a category',
-                'required' => false
-            ))
             ->add('title',null, array(
                 'required' => false
             ));
