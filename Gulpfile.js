@@ -8,7 +8,6 @@ var cleanCSS = require('gulp-clean-css'); // minify css
 var autoprefixer = require('gulp-autoprefixer');
 var compass = require('gulp-compass');
 
-
 var dir = {
     assets: './src/AppBundle/Resources/',
     dist: './web/',
@@ -72,8 +71,6 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('default', ['css', 'scripts', 'fonts', 'images']);
-
-
 
 gulp.task('watch-css', function () {
     gulp.watch('src/AppBundle/Resources/style/**/*.css', ['css' ]);
