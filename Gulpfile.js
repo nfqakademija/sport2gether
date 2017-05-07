@@ -71,3 +71,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('default', ['css', 'scripts', 'fonts', 'images']);
+
+gulp.task('watch-css', function () {
+    gulp.watch('src/AppBundle/Resources/style/**/*.css', ['css' ]);
+});

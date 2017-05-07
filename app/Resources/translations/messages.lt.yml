@@ -1,5 +1,8 @@
 header:
   logo: logotipas
+list:
+  more: PLAČIAU
+  login: Prisijungti
 
 user:
   username: Vartotojo vardas
