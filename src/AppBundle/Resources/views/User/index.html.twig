@@ -1,36 +1,6 @@
 {% extends "::basic_layout.html.twig" %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-{% endblock %}
-
 {% block header %}
-    {% include(":inc:user_header.html.twig") %}
+    {% include("::inc/header.html.twig") %}
 {% endblock %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-
-            {% for event in events %}
-                <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="/images/cycling.jpg">
-                            <span class="card-title">{{ event.title }} <br> {{ event.getCategory }}</span>
-                        </div>
-                        <div class="card-content">
-                            <span>{{ event.getDate|date('Y-m-d H:i:s') }}</span>
-                            <span>{{ event.getCity }}</span>
-                            <a href="{{ path('viewEvent', {'id': event.id}) }}">Peržiūrėti</a>
-                        </div>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-        </div>
-    </div>
-
-{% endblock %}
