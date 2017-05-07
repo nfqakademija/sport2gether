@@ -1,14 +1,9 @@
 {% extends "::basic_layout.html.twig" %}
 
 {% block header %}
-    {% include("inc/header.html.twig") %}
+    {% include(":inc:user_header.html.twig") %}
 {% endblock %}
 
 {% block content %}
-    {% include "inc/carousel.html.twig" %}
     {{ include('AppBundle:SportEvent:main_list.html.twig') }}
-{% endblock %}
-
-{% block footer %}
-    {% include "inc/footer.html.twig" %}
 {% endblock %}

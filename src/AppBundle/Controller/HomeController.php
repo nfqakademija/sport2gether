@@ -13,7 +13,12 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', []);
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+        return $this->render('AppBundle:Home:index.html.twig', [
+            'events' => $events
+        ]);
     }
 
 }
