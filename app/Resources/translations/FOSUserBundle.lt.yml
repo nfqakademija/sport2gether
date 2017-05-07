@@ -1,11 +1,7 @@
-header:
-  logo: logotipas
-list:
-  more: PLAČIAU
-  login: Prisijungti
-
 user:
   username: Vartotojo vardas
   password: Slaptažodis
   login: Prisijungti
   register: Registruotis
+  email: Elektroninis paštas
+  passwordRepeat: Pakartoti slaptažodį
