@@ -31,10 +31,9 @@ class sportEventController extends Controller
 
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
-            $category = $eventSearch->getCategory() ? $eventSearch->getCategory()->getTitle() : null;
              $em = $this->getDoctrine()->getManager();
              $events = $em->getRepository('AppBundle:Event')
-                 ->findAllByTitle($title,$city,$category);
+                 ->findAllByTitle($title,$city);
 
              return $this->render('@App/User/index.html.twig',[
                  'events'=>$events
@@ -202,5 +201,22 @@ class sportEventController extends Controller
         $em->flush();
         return new Response();
     }
+
+    /**
+     * @Route("/myEvents", name="myEvents")
+     */
+    public function viewMyEventsAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findUserEvents($user);
+
+
+        return $this->render('@App/User/index.html.twig', array(
+            'events' => $events
+        ));
+    }
+
 
 }

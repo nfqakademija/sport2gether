@@ -1,14 +1,14 @@
 (function(){
     $('#joinEvent').on('click',function(e){
-        var id = $('#joinEvent').data('id');
+        var url = $('#joinEvent').data('url');
         e.preventDefault();
         $.post({
-            url:"/attend/"+id,
+            url: url,
             error:function(err){
                 console.error(err);
             },
             success:function(data){
-                console.log(data);
+                location.reload();
             },
             complete:function(){
 
@@ -19,15 +19,15 @@
 
 (function(){
     $('#leaveEvent').on('click',function(e){
-        var id = $('#leaveEvent').data('id');
+        var url = $('#leaveEvent').data('url');
         e.preventDefault();
         $.post({
-            url:"/unattend/"+id,
+            url: url,
             error:function(err){
                 console.error(err);
             },
             success:function(data){
-                console.log(data);
+                location.reload();
             },
             complete:function(){
 
