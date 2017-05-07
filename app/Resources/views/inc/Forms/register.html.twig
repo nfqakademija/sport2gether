@@ -7,20 +7,9 @@
                 <h4 class="modal-title modal-title--big" id="myModalLabel">Registracija</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Slaptažodis">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Pakartoti slaptažodį">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-lg btn-block btn-block--medium">Registruotis</button>
+                {{ render(controller(
+                'FOSUserBundle:Registration:register'
+                )) }}
             </div>
         </div>
     </div>

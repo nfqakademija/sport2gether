@@ -1,0 +1,7 @@
+user:
+  username: Vartotojo vardas
+  password: Slaptažodis
+  login: Prisijungti
+  register: Registruotis
+  email: Elektroninis paštas
+  passwordRepeat: Pakartoti slaptažodį
