@@ -13,8 +13,8 @@
             {% if is_granted('ROLE_USER') %}
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout </a> </li>
             {% else %}
-                <li><a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.login'|trans }} </a> </li>
-                <li><a href="#" data-toggle="modal" data-target="#registerModal">{{ 'user.register'|trans }} </a> </li>
+                <li><a href="{{ path('fos_user_security_login') }}">Login </a> </li>
+                <li><a href="{{ path('fos_user_registration_register') }}"><span class="register">Register</span></a></li>
             {% endif %}
 
         </ul>
@@ -59,6 +59,3 @@
         </div>
     </nav>
 </div>
-{% include("inc/Forms/login.html.twig") %}
-
-{% include("inc/Forms/register.html.twig") %}

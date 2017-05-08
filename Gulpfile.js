@@ -44,7 +44,6 @@ gulp.task('scripts', function() {
         //Third party assets
             dir.npm + 'jquery/dist/jquery.min.js',
             dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
-            dir.npm + 'materialize-css/dist/js/materialize.min.js',
 
             dir.assets + 'scripts/*.js',
             dir.assets + 'scripts/vendors/jquery.1.11.js'
@@ -64,7 +63,6 @@ gulp.task('images', function() {
 
 gulp.task('fonts', function() {
     gulp.src([
-        dir.npm + 'materialize-css/dist/fonts/roboto/**',
         dir.assets + 'fonts/**'
         ])
         .pipe(gulp.dest(dir.dist + 'fonts'));
