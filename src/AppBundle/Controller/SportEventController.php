@@ -213,7 +213,7 @@ class SportEventController extends Controller
         $events = $repository->findUserEvents($user);
 
 
-        return $this->render('@App/User/index.html.twig', array(
+        return $this->render('@App/User/myEvents.html.twig', array(
             'events' => $events
         ));
     }
