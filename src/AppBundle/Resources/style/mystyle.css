@@ -1366,7 +1366,7 @@ padding-left: 0px;
    line-height: 35px;
 }
 
-.rightside>button, {
+.rightside>button {
 	position: absolute;
 	top:45%;
 	left:25%;
@@ -1382,7 +1382,7 @@ padding-left: 0px;
 	width: 53%;
 	height: 12%;
 }
- .rightside>button:hover, :hover{
+ .rightside>button:hover{
  	background:#fff;
  	color: #000;
  	-moz-transition: all .3s ease-in;
@@ -1396,7 +1396,7 @@ padding-left: 0px;
 .newslettercontent{
 	margin-bottom: 90%;
 }
-.rightside>button, {
+.rightside>button {
 	left:0%;
 	top:48%;
 	font-size: 31.5px;
@@ -1450,7 +1450,7 @@ left: 0%;
 	.rightside>input{
 		font-size: 20px;
 	}
-	.rightside>button, {
+	.rightside>button {
 	 	font-size: 27px;
 		letter-spacing: 3px;
 	}
