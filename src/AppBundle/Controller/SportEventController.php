@@ -213,10 +213,37 @@ class SportEventController extends Controller
         $events = $repository->findUserEvents($user);
 
 
-        return $this->render('@App/User/myEvents.html.twig', array(
+        return $this->render('AppBundle:User:index.html.twig', array(
             'events' => $events
         ));
     }
 
+    /**
+     * @Route("/userShowEvents", name="userSearchEvents")
+     */
+    public function userSearchEventsAction(Request $request)
+    {
+        $eventSearch = new EventSearch();
+        $form = $this->createForm(EventSearchType::class, $eventSearch);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $title = $eventSearch->getTitle();
+            $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
+            $em = $this->getDoctrine()->getManager();
+            $events = $em->getRepository('AppBundle:Event')
+                ->findAllByTitle($title,$city);
+
+            return $this->render('@App/SportEvent/result.html.twig',[
+                'events'=>$events
+            ]);
+        }
+
+        return $this->render('AppBundle:SportEvent:userSearch_event.html.twig', [
+            'eventSearchForm' => $form->createView()
+        ]);
+    }
 
 }

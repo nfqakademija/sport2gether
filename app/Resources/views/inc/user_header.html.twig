@@ -1,22 +1,56 @@
-<nav class="transparent user_nav">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center black-text">Sport2together</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse black-text hide-on-med-and-up">
-            <i class="material-icons">menu</i></a>
+<div class="allcontain">
+    <div class="header">
+        <ul class="socialicon">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+        </ul>
+        <ul class="givusacall">
+            <li>{{ 'user.callus'|trans }} : +66666666 </li>
+        </ul>
+        <ul class="logreg">
+            {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }} </a> </li>
+            {% else %}
+                <li><a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.login'|trans }} </a> </li>
+                <li><a href="#" data-toggle="modal" data-target="#registerModal">{{ 'user.register'|trans }} </a> </li>
+            {% endif %}
 
-        <ul class="left hide-on-small-and-down black-text">
-            <li><a href="#"><i class="material-icons grey-text">person_pin</i></a></li>
-            <li><a href="#" class="black-text"><b>Create event</b></a></li>
         </ul>
-        <ul class="right hide-on-small-and-down black-text">
-            <li><a href="#" class="black-text">Atsijungti</a></li>
-        </ul>
-        {# Side navigation #}
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="#"><i class="material-icons">person_pin</i>Profile</a></li>
-            <li><a href="#"><i class="material-icons">playlist_add</i>Create event</a></li>
-            <li><a href="#" class="black-text">Atsijungti</a></li>
-        </ul>
-        </a>
     </div>
-</nav>
+    <!-- Navbar Up -->
+        <nav class="topnavbar navbar-default topnav">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
+                        <span class="sr-only"> Toggle navigaion</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logo" href="#"><img src="images/l.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="collapse navbar-collapse" id="upmenu">
+                    <ul class="nav navbar-nav" id="navbarontop">
+                        <div class = "renderForm">
+                            {{ render(controller('AppBundle:SportEvent:userSearchEvents')) }}
+                        </div>
+
+                    {% if is_granted('ROLE_USER') %}
+                        <li>
+                            <a href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                        </li>
+                        <button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+</div>
+
+{% include("inc/Forms/login.html.twig") %}
+
+{% include("inc/Forms/register.html.twig") %}
