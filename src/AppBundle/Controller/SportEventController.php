@@ -40,8 +40,12 @@ class SportEventController extends Controller
              ]);
         }
 
-        return $this->render('AppBundle:SportEvent:search_event.html.twig', [
-            'eventSearchForm' => $form->createView()
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+
+        return $this->render('AppBundle:SportEvent:result.html.twig', [
+            'events' => $events
         ]);
     }
 
