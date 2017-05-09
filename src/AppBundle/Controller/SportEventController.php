@@ -40,14 +40,33 @@ class SportEventController extends Controller
              ]);
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+
         return $this->render('AppBundle:SportEvent:search_event.html.twig', [
-            'eventSearchForm' => $form->createView()
+            'eventSearchForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/showNewestEventsAction", name="show_newest")
+     */
+    public function showNewestEventsAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+
+        return $this->render('AppBundle:SportEvent:result.html.twig', [
+            'events' => $events,
         ]);
     }
 
 
     /**
-     * @Route("/createEvent")
+     * @Route("/createEvent", name="create_event")
      */
     public function createEventAction(Request $request)
     {
