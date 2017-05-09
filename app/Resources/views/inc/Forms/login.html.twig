@@ -4,21 +4,14 @@
         <div class="modal-content modal-content--noBorder ">
             <div class="modal-header modal-header--noBorder">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title modal-title--big" id="myModalLabel">Prisijungimas</h4>
+                <h4 class="modal-title modal-title--big" id="myModalLabel">{{ 'user.login'|trans}}</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                   </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Slaptažodis">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-lg btn-block btn-block--medium">Prisijungti</button>
+                {{ render(controller(
+                'FOSUserBundle:Security:login'
+                )) }}
             </div>
          </div>
      </div>
  </div>
+

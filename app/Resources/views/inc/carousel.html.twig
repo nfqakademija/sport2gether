@@ -1,4 +1,12 @@
 <div class="allcontain">
+    <div class="intro-buttons">
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('show_newest') }}">{{ 'user.suburk_grupe'|trans }}</a>
+        {% else %}
+            <a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.suburk_grupe'|trans }}</a>
+        {% endif %}
+        <a href="{{ path('show_newest') }}">{{ 'user.atrask_aistra'|trans }}</a>
+    </div>
     <div id="carousel-up" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner " role="listbox">
             <div class="item active">
@@ -20,8 +28,10 @@
                 </div>
             </div>
         </div>
-        <div class = "renderForm">
-            {{ render(controller('AppBundle:sportEvent:searchEvents')) }}
-        </div>
+    </div>
+</div>
+<div class="all-contain">
+    <div class = "renderForm">
+        {{ render(controller('AppBundle:SportEvent:searchEvents')) }}
     </div>
 </div>

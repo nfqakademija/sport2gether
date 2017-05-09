@@ -1,0 +1,40 @@
+.txthover .txtcontent{
+    opacity: 1;
+}
+
+.txthover .stars{
+    font-size: 13.6px;
+    color: #e7e7e7;
+}
+
+.allcontain{
+    position: relative;
+}
+
+.intro-buttons{
+    position: absolute;
+    z-index: 2;
+    top: 50px;
+    left:0;
+    text-align: center;
+    width: 100%;
+}
+
+.intro-buttons a{
+    display: inline-block;
+    background: #020243;
+    border: 1px solid #020243;
+    font-family: "OpenSans Regular";
+    font-size: 19px;
+    color: #fff;
+    letter-spacing: 5px;
+    width: auto;
+    margin: 10px 20px;
+    padding: 15px 25px;
+}
+
+.intro-buttons a:hover{
+    background-color: #FFFFFF;
+    color:#020243;
+    text-decoration: none;
+}

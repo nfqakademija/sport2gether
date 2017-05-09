@@ -1,0 +1,105 @@
+{% extends "::basic_layout.html.twig" %}
+
+{% block header %}
+    {% include("::inc/header.html.twig") %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-offset-2 col-md-7">
+
+                <div class="thumbnail">
+                    <img class="img-responsive" src="/images/cycling.jpg" alt="">
+                    <div class="caption-full">
+                        <h1 class="text-center">{{ event.title }}</h1>
+
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <strong>{{ event.date|date("l, F d") }}</strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ event.date|date("H:s") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ event.address }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-15">
+                            <div class="col-xs-12">
+                                <p>{{ event.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="text-center margin-15">
+                            {% if event.hasAttendee(app.user) %}
+                            <a id ="leaveEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">Whoa, you are here!</a>
+                            {% else %}
+                            <a id ="joinEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('attendEvent',{'id':event.getId}) }}">Dalyvauti</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="well">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="comment-form">
+                            <form id="myform" method="post">
+                                <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <input type="hidden" name="eventId" id="eventId" class="eventId" value="{{ event.getId }}" />
+                                    <textarea class="form-control js-comment" rows="2" id="comment" name="comment" ></textarea>
+                                </div>
+                                <input type="submit" id="commentSubmit" class="js-commentSubmit btn btn-default" name="commentSubmit" value="Komentuoti">
+                            </form>
+                        </div>
+                    {% endif %}
+                    <hr>
+                    {%  for comment in event.comments|sort|reverse %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            {{ comment.author.username }}
+                            <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:s") }}</span>
+                            <p>{{ comment.content }}</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                    {%  endfor %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+

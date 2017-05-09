@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class sportEventController extends Controller
+class SportEventController extends Controller
 {
     /**
      * @Route("/showEvents", name="searchEvents")
@@ -35,19 +35,38 @@ class sportEventController extends Controller
              $events = $em->getRepository('AppBundle:Event')
                  ->findAllByTitle($title,$city);
 
-             return $this->render('@App/User/index.html.twig',[
+             return $this->render('@App/SportEvent/result.html.twig',[
                  'events'=>$events
              ]);
         }
 
-        return $this->render('AppBundle:sportEvent:search_event.html.twig', [
-            'eventSearchForm' => $form->createView()
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+
+        return $this->render('AppBundle:SportEvent:search_event.html.twig', [
+            'eventSearchForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/showNewestEventsAction", name="show_newest")
+     */
+    public function showNewestEventsAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findAllOrderByDate();
+
+        return $this->render('AppBundle:SportEvent:result.html.twig', [
+            'events' => $events,
         ]);
     }
 
 
     /**
-     * @Route("/createEvent")
+     * @Route("/createEvent", name="create_event")
      */
     public function createEventAction(Request $request)
     {
@@ -70,7 +89,7 @@ class sportEventController extends Controller
             $this->addFlash('success', 'Sekmingai sukurta');
             return $this->redirectToRoute('show_all_events');
         }
-        return $this->render('AppBundle:sportEvent:create_event.html.twig', [
+        return $this->render('AppBundle:SportEvent:create_event.html.twig', [
             'createEventForm' => $form->createView()
         ]);
 
@@ -81,7 +100,7 @@ class sportEventController extends Controller
      */
     public function editEventAction()
     {
-        return $this->render('AppBundle:sportEvent:edit_event.html.twig', array(
+        return $this->render('AppBundle:SportEvent:edit_event.html.twig', array(
             // ...
         ));
     }
@@ -91,7 +110,7 @@ class sportEventController extends Controller
      */
     public function joinEventAction()
     {
-        return $this->render('AppBundle:sportEvent:join_event.html.twig', array(
+        return $this->render('AppBundle:SportEvent:join_event.html.twig', array(
             // ...
         ));
     }
@@ -106,7 +125,7 @@ class sportEventController extends Controller
         $event = $repository->find($id);
 
 
-        return $this->render('AppBundle:sportEvent:event_item.html.twig', array(
+        return $this->render('AppBundle:SportEvent:event_item.html.twig', array(
             'event' => $event
         ));
     }
@@ -116,7 +135,7 @@ class sportEventController extends Controller
      */
     public function searchEventAction()
     {
-        return $this->render('AppBundle:sportEvent:search_event.html.twig', array(
+        return $this->render('AppBundle:SportEvent:search_event.html.twig', array(
             // ...
         ));
     }
@@ -126,7 +145,7 @@ class sportEventController extends Controller
      */
     public function listEventsAction()
     {
-        return $this->render('AppBundle:sportEvent:list_events.html.twig', array(
+        return $this->render('AppBundle:SportEvent:list_events.html.twig', array(
             // ...
         ));
     }
@@ -213,7 +232,7 @@ class sportEventController extends Controller
         $events = $repository->findUserEvents($user);
 
 
-        return $this->render('@App/User/index.html.twig', array(
+        return $this->render('@App/User/myEvents.html.twig', array(
             'events' => $events
         ));
     }

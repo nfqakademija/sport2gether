@@ -1,0 +1,13 @@
+header:
+  logo: logotipas
+list:
+  more: PLAČIAU
+  login: Prisijungti
+
+user:
+  username: Vartotojo vardas
+  password: Slaptažodis
+  login: Prisijungti
+  register: Registruotis
+  suburk_grupe: Suburk grupę
+  atrask_aistra: Atrask aistrą
