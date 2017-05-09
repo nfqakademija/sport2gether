@@ -1,5 +1,4 @@
-<li>
-    {{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST','attr':{'class':'form-inline'} }) }}
+{{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST','attr':{'class':'navbar-form'} }) }}
         <div>
                 <div class="form-group">
                     {{ form_widget(eventSearchForm.title, {'attr':{'class':'form-control', 'placeholder':'user.searchEvent'|trans}}) }}
@@ -9,7 +8,7 @@
                 </div>
                 <button type="submit"><span class="glyphicon glyphicon-search "></span></button>
         </div>
-    {{ form_widget(eventSearchForm) }}
-    {{ form_end(eventSearchForm) }}
-</li>
+{{ form_widget(eventSearchForm) }}
+{{ form_end(eventSearchForm) }}
+
 
