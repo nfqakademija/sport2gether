@@ -339,6 +339,9 @@ float: right;
 	src: url(../fonts/OpenSans-Semibold.ttf) format("truetype");
 
 }
+.carousel-inner, .carousel-up {
+	height: calc(100vh - 96px - 131px);
+}
 .carousel-caption{
 	z-index: 999;
 }
@@ -386,8 +389,7 @@ font-size: 10pt;
 .midle-nav{
 	background: rgba(248,199,45,.8);
  	border: 0px;
- 	position: absolute;
- 	bottom: 20%;
+ 	position: relative;
  	width: 100%;
  	margin: 0px;
  	border-radius: 0px;
@@ -452,6 +454,7 @@ font-size: 10pt;
 	padding-right: 0px;
 }
 .searchform{
+	display: inline-block;
 	padding-right: 64px;
 	background: none;
 	background-color: none;
@@ -506,6 +509,7 @@ font-size: 10pt;
 	margin-right: 7.3%;
 }
 .searchbutton-container {
+	display: inline-block;
     position: relative;
     height: 45px;
     line-height: 45px;
@@ -551,15 +555,8 @@ font-size: 10pt;
 		margin-left: 40px;
 	}
 }
-@media only screen and (min-width: 768px) and (max-width: 1365px){
-	.midle-nav{
-		position: absolute;
-}
- 
 .searchtxt>h1{
 	font-size: 18pt;
- 
- 
 	padding-left: 0px;
 
 }
@@ -702,9 +699,6 @@ padding-left: 0px;
 	color: #fff;
 
  }
- .searchtxt>h1{
- 	font-size: 0pt;
-}
 .searchbutton{
 display: block;
 margin-right: auto;
@@ -716,20 +710,18 @@ font-weight: bold;
 .searchform::-moz-placeholder {
     /* FF 19+ */
 font-weight: bold;
- 
-
 }
+
 .searchformmargin{
+	display: inline-block;
 	margin-bottom: 20px;
 	border: 0px;
 	padding: 0px;
 	margin-right: 0px;
 }
-
 }
 
- 
-/*   ---------------------------   fetured cars   ---------------------------------    */
+/*   ---------------------------   featured cars   ---------------------------------    */
 @font-face{
 	font-family: "OpenSans-Light";
 	src: url(../fonts/OpenSans-Light.ttf) format("truetype");
@@ -1730,15 +1722,16 @@ height: 30px;
 .full-screen {
     min-width: 100%;
     max-width: 140% !important;
-    min-height: 97.8vh;
+    min-height: 80vh;
+	max-height: 92vh;
 }
 
 @media only screen and ( max-width: 768px ) and (orientation: portrait) {
 	.full-screen {
     	min-height: calc(97.8vh - 292px);
 	}
-	.midle-nav {
-    	position: relative;
+	.carousel-inner {
+		height: calc(100vh - 96px - 221px);
 	}
 }
 
