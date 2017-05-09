@@ -24,7 +24,12 @@ class EventFormType extends AbstractType
 
         $builder
             ->add('image', FileType::class, ['label'=>'Image'])
-            ->add('title',TextType::class,['label' => "Pavadinimas"])
+            ->add('title',TextType::class,
+                [
+                    'label' => "Pavadinimas",
+                    'attr' => array('class' => 'form-control'),
+                    'label_attr' => array('class' => 'control-label')
+                ])
             ->add('date',DateTimeType::class,['label' => "Data"])
             ->add('address',TextType::class,['label' => "Adresas"])
             ->add('description',TextType::class,['label' => "Aprasymas"])

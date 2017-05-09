@@ -6,7 +6,9 @@
 
 {% block content %}
     {% include "inc/carousel.html.twig" %}
-    {{ include('AppBundle:SportEvent:main_list.html.twig') }}
+    <div id="intro-newest">
+        {{ include('AppBundle:SportEvent:main_list.html.twig') }}
+    </div>
 {% endblock %}
 
 {% block footer %}
