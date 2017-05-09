@@ -1722,8 +1722,8 @@ height: 30px;
 .full-screen {
     min-width: 100%;
     max-width: 140% !important;
-    /*min-height: 97.8vh;*/
     min-height: 80vh;
+	max-height: 92vh;
 }
 
 @media only screen and ( max-width: 768px ) and (orientation: portrait) {
