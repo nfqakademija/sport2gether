@@ -1,0 +1,16 @@
+header:
+  logo: logotipas
+list:
+  more: PLAČIAU
+  login: Prisijungti
+
+user:
+  username: Vartotojo vardas
+  password: Slaptažodis
+  login: Prisijungti
+  register: Registruotis
+  logout: Atsijungti
+  callus: Paskambinkite mums
+  events: Mano renginiai
+  createEvent: Sukurti naują renginį
+  searchEvent: Renginio pavadinimas
