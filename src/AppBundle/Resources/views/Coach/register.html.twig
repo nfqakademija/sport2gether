@@ -1,0 +1,28 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    {{ form_start(form, {'method': 'post', 'action': path('registerCoach')}) }}
+
+        <div class="form-group">
+            {{ form_widget(form.username, {'attr':{'class':'form-control', 'placeholder':'user.username'|trans  }}) }}
+            {{ form_errors(form.username) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.email, {'attr':{'class':'form-control','placeholder':'user.email'|trans}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.first, {'attr':{'class':'form-control','placeholder':'user.password'|trans}}) }}
+            {{ form_errors(form.plainPassword.first) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.plainPassword.second, {'attr':{'class':'form-control','placeholder':'user.passwordRepeat'|trans}}) }}
+            {{ form_errors(form.plainPassword.second) }}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-default btn-lg btn-block btn-block--medium">{{ 'user.register'|trans }}</button>
+        </div>
+    {{ form_end(form) }}
+
+{% endblock fos_user_content %}
