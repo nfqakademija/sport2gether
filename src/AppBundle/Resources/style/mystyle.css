@@ -8,7 +8,6 @@
  Template: GARAGE
  */
 
-
 .allcontain{
 	width: 100%;
 	margin-left: auto;
@@ -26,13 +25,9 @@
 list-style-type: none;
 display: inline-block;
 margin: 0px;
-padding-left: 11.2%;
- 
 }
 .socialicon>li{
 float: left;
-padding-top: 2px;
-
 }
 .socialicon>li>a{
 padding-right: 10px;
@@ -52,24 +47,19 @@ text-decoration: none;
 	font-size: 12.7px;	
 	color: #E7E7E7;
 	margin-bottom: 0px;
-	padding-left: 26.1%;
-}
-.givusacall>li{
-		float: right;
+	padding-top: 2px;
 }
  .logreg{
  	list-style-type: none;
  	display: inline-block;
- 	
 	font-family: 'BebasNeue Regular';
 	font-size: 9pt;
 	color: #E7E7E7;
 	margin-bottom: 0px;
-	padding-left: 23%;
+	 padding-top: 3px;
 }
 .logreg>li{
-float: left;
-
+float: right;
 }
 .logreg>li>a{
 	text-decoration: none;
@@ -85,36 +75,15 @@ float: left;
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
-@media screen and (max-width: 825px) {
-.socialicon{
-padding-left: 5%;
-}
-.givusacall{
-	padding-left: 15%;
-}
-}
-@media screen and (max-width: 555px){
-	.givusacall{
-	padding-left: 10%;
-}
-.logreg{
-		padding-left: 13%;
-}
-}
 @media screen and (max-width: 440px){
 	.givusacall{
-	padding-left: 3%;
 	font-size: 11px;
 }
 .logreg{
-		padding-left: 8%;
 		font-size: 11px;
 }
 .socialicon>li{
 	font-size: 11px;
-}
-.socialicon{
-	padding-left: 0px;
 }
 }
 
@@ -328,11 +297,8 @@ float: right;
   }
 }
 
-
-
 /* ------------------------ End Navbar On Top -----------------*/
 /*------------------------- Start Carousel --------------------*/
-
 
 @font-face{
 	font-family: "OpenSans Semibold";
@@ -340,7 +306,7 @@ float: right;
 
 }
 .carousel-inner, .carousel-up {
-	height: calc(100vh - 96px - 131px);
+	height: calc(100vh - 96px - 42px);
 }
 .carousel-caption{
 	z-index: 999;
@@ -361,26 +327,18 @@ font-family: :'OpenSans Regular';
 font-size: 15.88pt;
 }
 .carousel-caption {
-    top: 35%;
+    top: 20%;
     left:13%;
     right:auto;
     bottom: auto;
 }
 
-@media screen and (min-width: 320px) and (max-width:767px){
+@media screen and (max-width:500px) {
 .carousel-caption>h2{
-	font-size: 13pt;
+	font-size: 15pt;
 }
-.carousel-caption {
-    top: 15%;
 
 }
- 
-.carousel-caption>p{
-font-size: 10pt;
-}	
-}
- 
 
 /* -----------------------------Second Navbar ---------------------------------------*/
 .downicon{
@@ -393,6 +351,12 @@ font-size: 10pt;
  	width: 100%;
  	margin: 0px;
  	border-radius: 0px;
+	height: 120px;
+}
+@media only screen and (max-width: 600px) {
+	.midle-nav {
+		height: auto;
+	}
 }
 #navbarmidle{
 		padding-left: 6.6%;
@@ -534,8 +498,6 @@ font-size: 10pt;
 .btn-costume{
 	border-radius: 0px;
 }
-
- 
 
 @media only screen and (min-width: 1366px){
 	.li-category{
@@ -736,7 +698,7 @@ font-weight: bold;
 
 .carstxt{
 	padding-left: 45px;
-	padding-right: 88px;
+	padding-right: 45px;
 }
 .bdots{
 	padding-right: 40px;
@@ -1724,15 +1686,6 @@ height: 30px;
     max-width: 140% !important;
     min-height: 80vh;
 	max-height: 92vh;
-}
-
-@media only screen and ( max-width: 768px ) and (orientation: portrait) {
-	.full-screen {
-    	min-height: calc(97.8vh - 292px);
-	}
-	.carousel-inner {
-		height: calc(100vh - 96px - 221px);
-	}
 }
 
 /* Icons */
