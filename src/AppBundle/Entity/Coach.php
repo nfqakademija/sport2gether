@@ -47,13 +47,6 @@ class Coach
     private $category;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
-     */
-    private $username;
-
-    /**
      * @ORM\ManyToOne(targetEntity="City", inversedBy="coaches")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
