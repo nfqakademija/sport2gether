@@ -1,14 +1,6 @@
 <div class="allcontain">
-    <div class="intro-buttons">
-        {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('create_event') }}">{{ 'user.suburk_grupe'|trans }}</a>
-        {% else %}
-            <a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.suburk_grupe'|trans }}</a>
-        {% endif %}
-        <a href="#intro-newest">{{ 'user.atrask_aistra'|trans }}</a>
-    </div>
     <div id="carousel-up" class="carousel slide" data-ride="carousel">
-        <!--<div class="carousel-inner " role="listbox">
+        <div class="carousel-inner " role="listbox">
             <div class="item active">
                 <img src="images/football.jpeg" class="full-screen" alt="football">
                 <div class="carousel-caption">
@@ -27,12 +19,14 @@
                     <h2>Susirask bendraminčių, sportuokite kartu</h2>
                 </div>
             </div>
-        </div>-->
-        <div class="video">
-            <video autoplay muted loop>
-                <source src="images/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        </div>
+        <div class="intro-buttons">
+            {% if is_granted('ROLE_USER') %}
+                <a class="btn btn-defaultd" href="{{ path('create_event') }}">{{ 'user.createGroup'|trans }}</a>
+            {% else %}
+                <a class="btn btn-default" href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.createGroup'|trans }}</a>
+            {% endif %}
+            <a class="btn btn-default" href="#intro-newest">{{ 'user.findPassion'|trans }}</a>
         </div>
     </div>
 </div>
