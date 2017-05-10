@@ -1,0 +1,6 @@
+AppBundle\Entity\Comment:
+    comment_{1..100}:
+        content: <sentence(6)>
+        author: '@user*'
+        createdAtDate: <dateTimeBetween('-10 Months','now')>
+        event: '@event*'
