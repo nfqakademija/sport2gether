@@ -1,9 +1,10 @@
 {% extends "::basic_layout.html.twig" %}
 
-
+{% block header %}
+    {% include(":inc:user_header.html.twig") %}
+{% endblock %}
 
 {% block content %}
-
     {{ form_start(createEventForm) }}
     {{ form_widget(createEventForm) }}
     <button type="submit" class="btn btn-primary">Save</button>

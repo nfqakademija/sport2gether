@@ -1,0 +1,11 @@
+AppBundle\Entity\City:
+    city_1:
+      title: 'Kaunas'
+    city_2:
+      title: 'Vilnius'
+    city_3:
+      title: 'Klaipėda'
+    city_4:
+      title: 'Šiauliai'
+    city_5:
+      title: 'Panevėžys'

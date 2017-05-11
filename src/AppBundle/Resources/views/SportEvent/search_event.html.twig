@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default midle-nav">
     <div class="navbar-collapse collapse in" id="navbarmidle" aria-expanded="true">
         <div class="searchtxt">
-            <h1>SEARCH Events</h1>
+            <h1>{{ 'user.searchEvents'|trans }}</h1>
         </div>
     {{ form_start(eventSearchForm, {'action': path('searchEvents'), 'method': 'POST' }) }}
         <div class="navbar-form navbar-left searchformmargin" role="search">
             <div class="form-group">
-                {{ form_widget(eventSearchForm.title, {'attr':{'class':'form-control searchform', 'placeholder':'Enter event'}}) }}
+                {{ form_widget(eventSearchForm.title, {'attr':{'class':'form-control searchform', 'placeholder':'user.searchEvent'|trans}}) }}
             </div>
         </div>
         <div class="navbar-form navbar-left searchformmargin" role="search">

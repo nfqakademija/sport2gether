@@ -7,34 +7,54 @@
     color: #e7e7e7;
 }
 
-.allcontain{
+.allcontain {
     position: relative;
 }
 
-.intro-buttons{
+.intro-buttons {
     position: absolute;
     z-index: 2;
-    top: 50px;
+    top: 40%;
     left:0;
     text-align: center;
     width: 100%;
 }
 
-.intro-buttons a{
-    display: inline-block;
-    background: #020243;
-    border: 1px solid #020243;
-    font-family: "OpenSans Regular";
-    font-size: 19px;
-    color: #fff;
-    letter-spacing: 5px;
-    width: auto;
-    margin: 10px 20px;
-    padding: 15px 25px;
+.intro-header {
+    font-size: 52px;
+    color: white;
 }
 
-.intro-buttons a:hover{
-    background-color: #FFFFFF;
-    color:#020243;
+.intro-buttons a {
+    font-size: 24.5px;
+    letter-spacing: 0px;
+
+    background: none;
+    border: 1px solid #fff;
+    font-family: "OpenSans-Light";
+    color: #fff;
+    padding-left: 26.7px;
+    padding-right: 26.7px;
+}
+
+.intro-buttons a:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    -webkit-transition: all .3s ease-in;
+    transition: all .2s ease-in;
     text-decoration: none;
+}
+
+.video {
+    width: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100vh;
+    object-fit: initial;
+    height: calc(100vh - 140px);
 }

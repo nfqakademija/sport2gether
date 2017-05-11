@@ -1,0 +1,6 @@
+AppBundle\Entity\Coach:
+    coach_{1..10}:
+        firstName: <firstName()>
+        lastName: <lastName()>
+        category: '@category*'
+        city: '@city*'

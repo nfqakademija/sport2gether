@@ -6,11 +6,29 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title modal-title--big" id="myModalLabel">Registracija</h4>
             </div>
-            <div class="modal-body">
-                {{ render(controller(
-                'FOSUserBundle:Registration:register'
-                )) }}
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">{{ 'user.client'|trans }}</a></li>
+                    <li><a data-toggle="tab" href="#menu1">{{ 'user.coach'|trans }}</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        {{ render(controller(
+                        'FOSUserBundle:Registration:register'
+                        )) }}
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        {{ render(controller(
+                        'AppBundle:CoachRegistration:register'
+                        )) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+

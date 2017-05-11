@@ -1,0 +1,11 @@
+AppBundle\Entity\Category:
+    category_1:
+      title: 'Krepšinis'
+    category_2:
+      title: 'Futbolas'
+    category_3:
+      title: 'Bėgimas'
+    category_4:
+      title: 'Kovinis sportas'
+    category_5:
+      title: 'Dviračių sportas'

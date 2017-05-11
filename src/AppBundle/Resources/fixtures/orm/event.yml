@@ -1,0 +1,11 @@
+AppBundle\Entity\Event:
+    event_{1..50}:
+        title: '@category*'
+        date: <dateTimeBetween('now', '+10 Months')>
+        address: <streetAddress()>
+        description: <sentence(8)>
+        coach: '@coach*'
+        category: '@category*'
+        city: '@city*'
+
+
