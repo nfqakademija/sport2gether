@@ -54,7 +54,7 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="text-center margin-15">
                             {% if event.hasAttendee(app.user) %}
-                            <a id ="leaveEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">Whoa, you are here!</a>
+                            <a id ="leaveEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">Dalyvauju!</a>
                             {% else %}
                             <a id ="joinEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('attendEvent',{'id':event.getId}) }}">Dalyvauti</a>
                             {% endif %}
@@ -79,11 +79,6 @@
                     {%  for comment in event.comments|sort|reverse %}
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
                             {{ comment.author.username }}
                             <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:s") }}</span>
                             <p>{{ comment.content }}</p>

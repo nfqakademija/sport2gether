@@ -14,8 +14,8 @@ user:
   events: Mano renginiai
   createEvent: Sukurti naują renginį
   searchEvent: Renginio pavadinimas
-  createGroup: Suburkite grupę
-  findPassion: Atraskite aistrą
+  createGroup: Suburk grupę
+  findPassion: Atrask aistrą
   searchEvents: Ieškoti renginio
   client: Klientas
   coach: Treneris

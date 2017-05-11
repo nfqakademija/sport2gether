@@ -1,23 +1,26 @@
 <div class="allcontain">
     <div class="header">
-        <ul class="socialicon">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-        </ul>
-        <ul class="givusacall">
-            <li>{{ 'user.callus'|trans }} : +66666666 </li>
-        </ul>
-        <ul class="logreg">
-            {% if is_granted('ROLE_USER') %}
-                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }} </a> </li>
-            {% else %}
-                <li><a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.login'|trans }} </a> </li>
-                <li><a href="#" data-toggle="modal" data-target="#registerModal">{{ 'user.register'|trans }} </a> </li>
-            {% endif %}
-
-        </ul>
+        <div class="container">
+            <div class="row">
+                <ul class="socialicon col-xs-4">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+                <ul class="givusacall col-xs-4">
+                    <li>{{ 'user.callus'|trans }} : +66666666 </li>
+                </ul>
+                <ul class="logreg col-xs-4">
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a> </li>
+                    {% else %}
+                        <li><a href="#" data-toggle="modal" data-target="#registerModal">{{ 'user.register'|trans }} </a> </li>
+                        <li><a href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.login'|trans }} </a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Navbar Up -->
@@ -35,9 +38,7 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="upmenu">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <a class="" href="#"><img class="background-black" src="images/logo2.png" alt="logo"></a>
-                        </div>
+                        <div class="col-sm-2"><h2 class="header-logo">Sport2gether</h2></div>
                         <div class="col-sm-6">
                             <div class="user_header_form text-center">
                                 {{ render(controller('AppBundle:SportEvent:userSearchEvents')) }}
@@ -49,7 +50,7 @@
                                 <li>
                                     <a class="myEventLink" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                                 </li>
-                                <button class="myEventLink"><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>
+                                {#<button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>#}
                             </ul>
                             {% endif %}
                         </div>
@@ -60,7 +61,6 @@
 </div>
 
 {% include("inc/Forms/login.html.twig") %}
-
 {% include("inc/Forms/register.html.twig") %}
 
 

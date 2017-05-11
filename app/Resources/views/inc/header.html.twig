@@ -8,7 +8,7 @@
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                     </ul>
-                <ul class="givusacall col-xs-4"">
+                <ul class="givusacall col-xs-4">
                     <li>{{ 'user.callus'|trans }} : +66666666 </li>
                 </ul>
                 <ul class="logreg col-xs-4">
@@ -33,16 +33,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand logo" href="#"><img src="images/logo1.png" alt="logo"></a>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="upmenu">
-            <ul class="nav navbar-nav pull-right" id="navbarontop">
-                <li>
-                    <a href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
-                </li>
-                <button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>
-            </ul>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="upmenu">
+                <div class="row">
+                    <div class="col-sm-3"><h2 class="header-logo">Sport2gether</h2></div>
+                    <div class="col-sm-3 col-sm-offset-6">
+                        <ul class="nav navbar-nav" id="navbarontop">
+                            {% if is_granted('ROLE_USER') %}
+                            <li>
+                                <a class="myEventLink" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                            </li>
+                            {#<button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>#}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
     {% endif %}

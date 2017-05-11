@@ -145,8 +145,6 @@ float: right;
  	margin-left: 60px;
   	font-size: 16.99px;
   	color: #313943;
-  	padding-left: 19px;
-  	padding-right: 19px;
   	padding-top: -2px;
   	padding-bottom:-2px;
  }
@@ -215,11 +213,6 @@ float: right;
 .toggle-costume{
 	float: right;
 }
-#navbarontop{
-	 padding-left: 0px;
-	padding-top: 26px; 
-	height: 250px;
-}
 #navbarontop>li>a{
 	margin-left: 0px;
 	padding-left: 50px;
@@ -260,11 +253,7 @@ float: right;
     -o-transform: scale(0.7); /* Opera 10.5+ */
      transform: scale(0.7);
 }
-#navbarontop{
-	 padding-left: 0px;
-	padding-top: 40px; 
-	height: 250px;
-}
+
 #navbarontop>li>a{
 	margin-left: 0px;
 	padding-left: 50px;
@@ -305,8 +294,8 @@ float: right;
 	src: url(../fonts/OpenSans-Semibold.ttf) format("truetype");
 
 }
-.carousel-inner, .carousel-up {
-	height: calc(100vh - 96px - 42px);
+.carousel-inner, #carousel-up {
+	height: calc(100vh - 140px);
 }
 .carousel-caption{
 	z-index: 999;
@@ -352,11 +341,6 @@ font-size: 15.88pt;
  	margin: 0px;
  	border-radius: 0px;
 	height: 120px;
-}
-@media only screen and (max-width: 600px) {
-	.midle-nav {
-		height: auto;
-	}
 }
 #navbarmidle{
 		padding-left: 6.6%;
@@ -429,6 +413,7 @@ font-size: 15.88pt;
 	height: 44px;
 	margin: 0px;
 }
+
 .searchform:focus {
   border-color: #fff;
   outline: 0;
@@ -595,7 +580,7 @@ padding-left: 0px;
     font-size: 11pt;
 }
 .navbar-form .searchform{
-	width: 133px;
+	width: 42vw;
 }
 .navbarborder>li:last-child{
 	margin-left: 0px;
@@ -693,7 +678,7 @@ font-weight: bold;
 	font-size: 41px;
 	padding-top: 46px;
 	padding-bottom: 50px;
-	color: #020243;
+	color: black;
 }
 
 .carstxt{
@@ -1703,4 +1688,12 @@ height: 30px;
 
 .margin-top-15 {
 	margin-top: 15px;
+}
+
+.navbar-collapse.in {
+	overflow-y: visible;
+}
+
+.header-logo {
+	margin-top: 10px;
 }
