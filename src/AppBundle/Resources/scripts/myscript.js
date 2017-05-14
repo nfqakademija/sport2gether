@@ -1,10 +1,3 @@
-// $(function () {
-//     $(".btn-findPassion").on('click',function (e) {
-//
-//     });
-// });
-
-
 $(function () {
     var $findPassion = $(".btn-findPassion");
 
@@ -15,4 +8,15 @@ $(function () {
             scrollTop: $('#intro-newest').offset().top
         }, 500);
     });
+});
+
+$(function() {
+    var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+    if ( supportsTouch ) {
+        $('.video video').css('display', 'none');
+        $('.video-fallback').css('display', 'block');
+    } else {
+        $('.video-fallback').css('display', 'none');
+    }
 });

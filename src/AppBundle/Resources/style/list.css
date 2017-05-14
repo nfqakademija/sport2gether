@@ -58,6 +58,10 @@ video {
     object-fit: initial;
     height: calc(100vh - 140px);
 }
+.video-fallback {
+    width: 100%;
+    height: calc(100vh - 140px);
+}
 
 @media screen and (max-width: 585px) {
     .intro-header {
