@@ -26,15 +26,14 @@
 }
 
 .intro-buttons a {
-    font-size: 24.5px;
-    letter-spacing: 0px;
+    font-size: 18.5px;
+    letter-spacing: 1px;
 
     background: none;
     border: 1px solid #fff;
     font-family: "OpenSans-Light";
     color: #fff;
-    padding-left: 26.7px;
-    padding-right: 26.7px;
+    padding: 8px 50px;
 }
 
 .intro-buttons a:hover {
@@ -54,7 +53,19 @@
 
 video {
     width: 100%;
+    min-width: 600px;
     height: 100vh;
     object-fit: initial;
     height: calc(100vh - 140px);
+}
+
+@media screen and (max-width: 585px) {
+    .intro-header {
+        font-size: 30px;
+    }
+
+    .intro-buttons a {
+        font-size: 12px;
+        padding: 7px 35px;
+    }
 }

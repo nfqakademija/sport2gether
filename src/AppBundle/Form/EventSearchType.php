@@ -18,7 +18,7 @@ class EventSearchType extends AbstractType
         $builder
             ->add('city', EntityType::class, array(
                 'class' => 'AppBundle:City',
-                'placeholder' => 'Pasirinkite miestą',
+                'placeholder' => 'Miestas',
                 'required' => false
             ))
             ->add('title',null, array(

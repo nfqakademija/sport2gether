@@ -1,32 +1,18 @@
-$('#btnRM').click(function(){
-    $('#readmore').animate({height:'322px'}, 500);
-});
-$('#btnRL').click(function(){
-	$('#readmore').animate({height:'0px'}, 500);
-});
-$('#btnRM2').click(function(){
-    $('#readmore2').animate({height:'322px'}, 500);
-});
-$('#btnRL2').click(function(){
-	$('#readmore2').animate({height:'0px'}, 500);
-});
+// $(function () {
+//     $(".btn-findPassion").on('click',function (e) {
+//
+//     });
+// });
+
 
 $(function () {
-  $("#mydd a").on('click',function (e) {
-  	e.preventDefault();
-    $("#dropdownMenu1").html($(this).html() + ' <span class="downicon"></span>');
-  });
-});
+    var $findPassion = $(".btn-findPassion");
 
-$(function () {
-  $("#mydd2 a").on('click',function (e) {
-  	e.preventDefault();
-    $("#dropdownMenu2").html($(this).html() + ' <span class="downicon"></span>');
-  });
-});
-$(function () {
-  $("#mydd3 a").on('click',function (e) {
-  	e.preventDefault();
-    $("#dropdownMenu3").html($(this).html() + ' <span class="downicon"></span>');
-  });
+    $findPassion.on('click', function () {
+        console.log('works');
+
+        $('html body').animate({
+            scrollTop: $('#intro-newest').offset().top
+        }, 500);
+    });
 });

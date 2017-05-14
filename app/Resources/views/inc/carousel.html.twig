@@ -2,7 +2,7 @@
     <div id="carousel-up" class="carousel slide" data-ride="carousel">
         <div class="video">
             <video autoplay muted loop>
-                <source src="images/video.mp4" type="video/mp4">
+                <source src="images/video-resized.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -13,7 +13,7 @@
             {% else %}
                 <a class="" href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.createGroup'|trans }}</a>
             {% endif %}
-            <a class="" href="#intro-newest">{{ 'user.findPassion'|trans }}</a>
+            <a class="btn-findPassion">{{ 'user.findPassion'|trans }}</a>
         </div>
     </div>
 </div>
