@@ -7,6 +7,9 @@
 {% block content %}
     {% include "inc/carousel.html.twig" %}
     <div id="intro-newest">
+            <div class="feturedsection">
+                <h1 class="text-center"><span class="bdots">•</span>{{ 'newest'|trans }}<span class="carstxt">{{ 'practice'|trans }}</span>•</h1>
+            </div>
         {{ include('AppBundle:SportEvent:main_list.html.twig') }}
     </div>
 {% endblock %}

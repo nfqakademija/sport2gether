@@ -1,0 +1,42 @@
+#navbarontop {
+    padding-left:0px !important;
+}
+button.myEventLink{
+    margin-left: 5px !important;
+}
+.user_header_form {
+    padding-top: 6px;
+}
+
+.transparent-header {
+    position: absolute;
+    z-index: 2;
+}
+
+.header-logo {
+    font-size: 36px;
+    margin-top: 15px;
+}
+
+.header-link:hover, .header-link:focus {
+    text-decoration: none;
+}
+
+.header-logo--white {
+    text-shadow: 1px 1px black;
+    color: white;
+}
+
+.header-logo--black {
+    color: black;
+    text-shadow: none;
+}
+
+.myEventLink {
+    color: white !important;
+    text-shadow: 1px 2px black;
+}
+.myEventLink--black {
+    color: black !important;
+    text-shadow: none;
+}

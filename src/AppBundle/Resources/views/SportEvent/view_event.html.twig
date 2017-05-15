@@ -25,19 +25,6 @@
                                 <span>{{ event.getDate|date('Y-m-d H:i:s') }}</span>
                                 <span>{{ event.getCity }}</span>
                             </div>
-                            {#
-                            <div class="joinEvent">
-                                {% if event.hasAttendee(app.user) %}
-                                <button>WHoa, you're going here</button>
-                                {% endif %}
-                            </div>
-                           {# <div class="comment-form">
-                                <form id="myform" method="post">
-                                    <input type="textarea" name="comment" class="comment" id="comment"/>
-                                    <input type="hidden" name="eventId" id="eventId" class="eventId" value="{{ event.getId }}" />
-                                    <input type="submit" id="commentSubmit" class="commentSubmit" name="commentSubmit" value="Comment">
-                                </form>
-                            </div>#}
                         </div>
                     </div>
 
