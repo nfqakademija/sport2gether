@@ -35,17 +35,19 @@
                 </button>
             </div>
         </div>
-        <div class="container">
+        <div class="container transparent-header">
             <div class="collapse navbar-collapse" id="upmenu">
                 <div class="row">
-                    <div class="col-sm-3"><h2 class="header-logo">Sport2gether</h2></div>
-                    <div class="col-sm-3 col-sm-offset-6">
+                    <div class="col-sm-3"><h2 class="header-logo header-logo--white">Sport2gether</h2></div>
+                    <div class="col-sm-6 col-sm-offset-2">
                         <ul class="nav navbar-nav" id="navbarontop">
                             {% if is_granted('ROLE_USER') %}
                             <li>
-                                <a class="myEventLink" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                                <a class="myEventLink"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                             </li>
-                            {#<button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>#}
+                            <li>
+                                <a class="myEventLink" href="">{{ 'user.createEvent'|trans }}</a>
+                            </li>
                         </ul>
                         {% endif %}
                     </div>

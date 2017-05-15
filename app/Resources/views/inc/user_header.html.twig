@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
-                        <span class="sr-only"> Toggle navigaion</span>
+                        <span class="sr-only"> Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -38,8 +38,8 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="upmenu">
                     <div class="row">
-                        <div class="col-sm-2"><h2 class="header-logo">Sport2gether</h2></div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4"><h2 class="header-logo header-logo--black">Sport2gether</h2></div>
+                        <div class="col-sm-4">
                             <div class="user_header_form text-center">
                                 {{ render(controller('AppBundle:SportEvent:userSearchEvents')) }}
                             </div>
@@ -48,7 +48,7 @@
                             <ul class="nav navbar-nav" id="navbarontop">
                             {% if is_granted('ROLE_USER') %}
                                 <li>
-                                    <a class="myEventLink" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                                    <a class="myEventLink myEventLink--black" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                                 </li>
                                 {#<button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>#}
                             </ul>
