@@ -18,6 +18,10 @@ button.myEventLink{
     margin-top: 15px;
 }
 
+.header-link:hover, .header-link:focus {
+    text-decoration: none;
+}
+
 .header-logo--white {
     text-shadow: 1px 1px black;
     color: white;

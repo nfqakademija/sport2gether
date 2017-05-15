@@ -134,7 +134,7 @@ text-decoration: none;
   #navbarontop > li >a:hover{
   	background-color: none!important;
   	background: none!important;
-  	border-bottom: 2px solid #C59E47;
+  	border-bottom: 1px solid white;
   }
  
 
