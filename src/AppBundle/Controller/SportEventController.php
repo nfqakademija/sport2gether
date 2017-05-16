@@ -77,9 +77,10 @@ class SportEventController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $file = $event->getImage();
-            $fileName = $this->get('app.image_uploader')->upload($file);
-            $event->setImage($fileName);
-
+            if(!empty($file)) {
+                $fileName = $this->get('app.image_uploader')->upload($file);
+                $event->setImage($fileName);
+            }
             $em = $this->getDoctrine()->getManager();
             /**todo need to add logged user ID*/
             //$event->setCoach(1);
@@ -233,7 +234,7 @@ class SportEventController extends Controller
         $events = $repository->findUserEvents($user);
 
 
-        return $this->render('AppBundle:User:index.html.twig', array(
+        return $this->render('@App/SportEvent/result.html.twig', array(
             'events' => $events
         ));
     }
