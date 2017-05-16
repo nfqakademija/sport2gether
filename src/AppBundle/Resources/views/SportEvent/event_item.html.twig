@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <label for="comment">Comment:</label>
                                     <input type="hidden" name="eventId" id="eventId" class="eventId" value="{{ event.getId }}" />
-                                    <textarea class="form-control js-comment" rows="2" id="comment" name="comment" ></textarea>
+                                    <textarea class="form-control js-comment" rows="2" id="comment" name="comment" required></textarea>
                                 </div>
                                 <input type="submit" id="commentSubmit" class="js-commentSubmit btn btn-default" name="commentSubmit" value="Komentuoti">
                             </form>
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             {{ comment.author.username }}
-                            <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:s") }}</span>
+                            <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:i:s") }}</span>
                             <p>{{ comment.content }}</p>
                         </div>
                     </div>
