@@ -77,9 +77,10 @@ class SportEventController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $file = $event->getImage();
-            $fileName = $this->get('app.image_uploader')->upload($file);
-            $event->setImage($fileName);
-
+            if(!empty($file)) {
+                $fileName = $this->get('app.image_uploader')->upload($file);
+                $event->setImage($fileName);
+            }
             $em = $this->getDoctrine()->getManager();
             /**todo need to add logged user ID*/
             //$event->setCoach(1);
@@ -160,18 +161,19 @@ class SportEventController extends Controller
             $user = $this->getUser();
             $comment = new Comment();
             $content = $request->getContent('commit');
-            $comment->setContent($content);
-            $comment->setCreatedAtDate(new \DateTime('NOW'));
-            $comment->setAuthor($user);
-            $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-            $event = $repository->findOneBy(['id' => $id]);
-            $comment->setEvent($event);
-            $event->addComment($comment);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->persist($event);
-            $em->flush();
-
+            if(!empty($content)) {
+                $comment->setContent($content);
+                $comment->setCreatedAtDate(new \DateTime('NOW'));
+                $comment->setAuthor($user);
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                $event = $repository->findOneBy(['id' => $id]);
+                $comment->setEvent($event);
+                $event->addComment($comment);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->persist($event);
+                $em->flush();
+            }
             return new Response();
         }
         else {
@@ -232,7 +234,7 @@ class SportEventController extends Controller
         $events = $repository->findUserEvents($user);
 
 
-        return $this->render('AppBundle:User:index.html.twig', array(
+        return $this->render('@App/SportEvent/result.html.twig', array(
             'events' => $events
         ));
     }

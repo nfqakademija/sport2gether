@@ -19,6 +19,7 @@ user:
   searchEvents: Ieškoti renginio
   client: Klientas
   coach: Treneris
+  attendee: Užsiregistravusių dalyvių skaičius
   saugoti: Saugoti
   mano: M A N O
   ivykis: Į V Y K I S
