@@ -23,7 +23,7 @@ class EventFormType extends AbstractType
     {
 
         $builder
-            ->add('image', FileType::class, ['label'=>'Image'])
+            ->add('image', FileType::class, ['label'=>'Paveikslėlis'])
             ->add('title',TextType::class,
                 [
                     'label' => "Pavadinimas",
@@ -32,7 +32,7 @@ class EventFormType extends AbstractType
                 ])
             ->add('date',DateTimeType::class,['label' => "Data"])
             ->add('address',TextType::class,['label' => "Adresas"])
-            ->add('description',TextType::class,['label' => "Aprasymas"])
+            ->add('description',TextType::class,['label' => "Aprašymas"])
             //->add('coach',TextType::class,['label' => "Treneris"])
             ->add('category', EntityType::class, array(
                 'class' => 'AppBundle:Category',

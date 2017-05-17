@@ -13,12 +13,16 @@ user:
   callus: Paskambinkite mums
   events: Mano renginiai
   createEvent: Sukurti naują renginį
-  searchEvent: Renginio pavadinimas
+  searchEvent: Pavadinimas
   createGroup: Suburk grupę
   findPassion: Atrask aistrą
   searchEvents: Ieškoti renginio
   client: Klientas
   coach: Treneris
+  attendee: Užsiregistravusių dalyvių skaičius
+  saugoti: Saugoti
+  mano: M A N O
+  ivykis: Į V Y K I S
 
 newest: N A U J A U S I O S
 practice: T R E N I R U O T Ė S

@@ -1,0 +1,28 @@
+fos_user:
+    username:
+        already_used: 'Toks vartotojo vardas jau egzistuoja'
+        blank: 'Prašau įrašykite vartotojo vardą'
+        short: 'The username is too short.'
+        long: 'The username is too long.'
+    email:
+        already_used: 'Toks el.paštas jau egzistuoja'
+        blank: 'Prašau įrašykite vael.paštą'
+        short: 'The email is too short.'
+        long: 'The email is too long.'
+        invalid: 'The email is not valid.'
+    password:
+        blank: 'Prašau įrašykite slaptažodį'
+        short: 'The password is too short.'
+        mismatch: 'The entered passwords don''t match.'
+    new_password:
+        blank: 'Please enter a new password.'
+        short: 'The new password is too short.'
+    current_password:
+        invalid: 'Neteisingai įvestas slaptažodis'
+    group:
+        blank: 'Please enter a name.'
+        short: 'The name is too short.'
+        long: 'The name is too long.'
+fos_group:
+    name:
+        already_used: 'The name is already used.'

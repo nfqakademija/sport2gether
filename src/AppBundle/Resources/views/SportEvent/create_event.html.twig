@@ -5,9 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    {{ form_start(createEventForm) }}
-    {{ form_widget(createEventForm) }}
-    <button type="submit" class="btn btn-primary">Save</button>
-    {{ form_end(createEventForm) }}
 
+    <h1 class="text-center">
+        <span class="bdots">•</span>
+        {{ 'user.mano'|trans }}
+        <span class="carstxt">{{ 'user.ivykis'|trans }}</span>•
+    </h1>
+
+    <div class="col-md-4 col-md-offset-4 event-form"">
+        {{ form_start(createEventForm) }}
+        {{ form_widget(createEventForm) }}
+        <button type="submit" class="btn yellow-btn">{{ 'user.saugoti'|trans }}</button>
+        {{ form_end(createEventForm) }}
+    </div>
 {% endblock %}

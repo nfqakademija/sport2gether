@@ -23,18 +23,19 @@
 .intro-header {
     font-size: 52px;
     color: white;
+    text-shadow: 1px 1px black;
 }
 
 .intro-buttons a {
-    font-size: 24.5px;
-    letter-spacing: 0px;
-
+    font-size: 22px;
+    letter-spacing: 1px;
     background: none;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     font-family: "OpenSans-Light";
     color: #fff;
-    padding-left: 26.7px;
-    padding-right: 26.7px;
+    padding: 8px 50px;
+    text-shadow: 1px 1px black;
+
 }
 
 .intro-buttons a:hover {
@@ -46,6 +47,7 @@
     -webkit-transition: all .3s ease-in;
     transition: all .2s ease-in;
     text-decoration: none;
+    text-shadow: none;
 }
 
 .video {
@@ -54,7 +56,31 @@
 
 video {
     width: 100%;
+    min-width: 600px;
     height: 100vh;
     object-fit: initial;
     height: calc(100vh - 140px);
+}
+.video-fallback {
+    width: 100%;
+    height: calc(100vh - 140px);
+}
+.yellow-btn{
+    background: rgba(248,199,45,.8)
+}
+
+.event-form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 585px) {
+    .intro-header {
+        font-size: 30px;
+    }
+
+    .intro-buttons a {
+        font-size: 12px;
+        padding: 7px 35px;
+    }
 }

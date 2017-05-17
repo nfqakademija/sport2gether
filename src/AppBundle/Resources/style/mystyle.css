@@ -59,12 +59,13 @@ text-decoration: none;
 	 padding-top: 3px;
 }
 .logreg>li{
-float: right;
+	float: right;
 }
 .logreg>li>a{
 	text-decoration: none;
 	color: #E7E7E7;
 	padding-right: 6px;
+	letter-spacing: 1px;
 }
 .logreg>li>a:hover{
 	color:#C59E47;
@@ -118,22 +119,22 @@ float: right;
     src: url(../fonts/BebasNeue-Regular.otf) format("truetype");
 }
   #navbarontop > li > a {
-  	font-family: 'BebasNeue Regular';
-  	font-size: 17px;
-  	color: #313943;
-    padding-top: 5px;
+  	font-family: inherit;
+  	font-size: 18px;
+    padding-top: 10px;
     padding-bottom: 6px;
     margin-bottom: 22px;
  	padding-left: 10px;
     padding-right: 10px!important;
     margin-left: 34px;
     border-bottom: 2px solid rgba(0,0,0,.0);
-
+	letter-spacing: 0.5px;
+	/*text-shadow: 1px 2px black;*/
   }
   #navbarontop > li >a:hover{
   	background-color: none!important;
   	background: none!important;
-  	border-bottom: 2px solid #C59E47;
+  	border-bottom: 1px solid white;
   }
  
 
@@ -296,6 +297,7 @@ float: right;
 }
 .carousel-inner, #carousel-up {
 	height: calc(100vh - 140px);
+	overflow: hidden;
 }
 .carousel-caption{
 	z-index: 999;
@@ -517,6 +519,16 @@ font-size: 15.88pt;
 	margin: 0px;
 	margin-right: 9px;
 }
+@media screen and (max-width: 565px) {
+	.searchform {
+		width: 32vw !important;
+	}
+}
+@media screen and (min-width: 566px) and (max-width: 810px) {
+	.searchform {
+		width: 38vw !important;
+	}
+}
 .searchformmargin{
 	margin-bottom: 20px;
  
@@ -570,9 +582,6 @@ padding-left: 0px;
 		padding-left: 5px;
 		margin-left: 5px;
 	}
-.searchform{
-	width: 40px;
-}
 .searchform::-webkit-input-placeholder {
     font-size:11pt;
 }
@@ -1692,8 +1701,4 @@ height: 30px;
 
 .navbar-collapse.in {
 	overflow-y: visible;
-}
-
-.header-logo {
-	margin-top: 15px;
 }
