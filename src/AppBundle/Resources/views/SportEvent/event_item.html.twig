@@ -12,7 +12,7 @@
             <div class="col-md-offset-2 col-md-7">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="/images/cycling.jpg" alt="">
+                    <img class="img-responsive" src="{{ event.image ? '/uploads/images/' ~ event.image : '/images/default_list.png' }}" alt="">
                     <div class="caption-full">
                         <h1 class="text-center">{{ event.title }}</h1>
 
