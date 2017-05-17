@@ -160,18 +160,19 @@ class SportEventController extends Controller
             $user = $this->getUser();
             $comment = new Comment();
             $content = $request->getContent('commit');
-            $comment->setContent($content);
-            $comment->setCreatedAtDate(new \DateTime('NOW'));
-            $comment->setAuthor($user);
-            $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-            $event = $repository->findOneBy(['id' => $id]);
-            $comment->setEvent($event);
-            $event->addComment($comment);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->persist($event);
-            $em->flush();
-
+            if(!empty($content)) {
+                $comment->setContent($content);
+                $comment->setCreatedAtDate(new \DateTime('NOW'));
+                $comment->setAuthor($user);
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                $event = $repository->findOneBy(['id' => $id]);
+                $comment->setEvent($event);
+                $event->addComment($comment);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->persist($event);
+                $em->flush();
+            }
             return new Response();
         }
         else {
