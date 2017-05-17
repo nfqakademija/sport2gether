@@ -45,6 +45,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ 'user.attendee' |trans  }}: {{ event.attendees | length }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row margin-top-15">
                             <div class="col-xs-12">
                                 <p>{{ event.description }}</p>
