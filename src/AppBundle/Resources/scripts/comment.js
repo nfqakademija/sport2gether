@@ -23,5 +23,8 @@
         }
     })
 }());
+function enableButton(){
+    document.getElementById('commentSubmit').removeAttribute('disabled');
+}
 
 
