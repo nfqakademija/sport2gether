@@ -73,6 +73,16 @@ video {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}
+.padding15{
+    padding: 0 15px;
+}
 
 @media screen and (max-width: 585px) {
     .intro-header {

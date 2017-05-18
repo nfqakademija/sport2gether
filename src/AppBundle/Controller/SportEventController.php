@@ -69,13 +69,14 @@ class SportEventController extends Controller
      * @Route("/createEvent", name="create_event")
      */
     public function createEventAction(Request $request)
-    {
+    {   $user = $this->getUser();
+    
         $event = new Event();
         $form = $this->createForm(EventFormType::class, $event);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $user = $this->getUser();
             $file = $event->getImage();
             if(!empty($file)) {
                 $fileName = $this->get('app.image_uploader')->upload($file);
@@ -83,7 +84,7 @@ class SportEventController extends Controller
             }
             $em = $this->getDoctrine()->getManager();
             /**todo need to add logged user ID*/
-            //$event->setCoach(1);
+            $event->setCoach($user);
             $em->persist($event);
             $em->flush();
 
