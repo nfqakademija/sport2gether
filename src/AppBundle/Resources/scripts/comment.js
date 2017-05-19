@@ -17,7 +17,7 @@
                     location.reload();
                 },
                 complete: function () {
-                    $("#myform")[0].reset();
+
                 }
             });
         }
@@ -29,5 +29,15 @@
 function enableButton(){
     document.getElementById('commentSubmit').removeAttribute('disabled');
 }
+(function(){
+    $(".js-comment").keyup(function() {
+        var maxLen = $(this).attr('maxlength');
+        var currentLen = $(this).val().length;
+        if (maxLen == currentLen)
+        {
+            $('.js-toomany').removeClass('hidden');
+        }
+    });
+}())
 
 
