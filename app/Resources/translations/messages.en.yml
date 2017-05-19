@@ -20,6 +20,9 @@ user:
   client: Klientas
   coach: Treneris
   attendee: Užsiregistravusių dalyvių skaičius
+  saugoti: Saugoti
+  mano: M A N O
+  ivykis: Į V Y K I S
   verify: Patvirtinkite, kad jūs ne robotas
   noevents: TOKIŲ RENGINIŲ NĖRA
   coachregister: Trenerio Registracija
