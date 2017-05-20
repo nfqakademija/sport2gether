@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\City;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Event;
@@ -64,6 +65,58 @@ class Coach
      * @ORM\OneToMany(targetEntity="Event", mappedBy="coach")
      */
     private $events;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     *
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg"}, maxSize="2056k", maxSizeMessage="Failas yra per didelis")
+     */
+    private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text",nullable=true,length=15)
+     *
+     * @Assert\Length(
+     *      max = 15,
+     *      maxMessage = "Viršijote leistiną simbolių skaičių ribą {{ limit }}"
+     * )
+     */
+    private $phoneNumber;
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 
 
     public function __construct()
