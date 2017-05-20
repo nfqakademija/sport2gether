@@ -7,6 +7,7 @@ use AppBundle\Entity\EventSearch;
 use AppBundle\Entity\Event;
 use AppBundle\Form\EventFormType;
 use AppBundle\Form\EventSearchType;
+use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -160,19 +161,30 @@ class SportEventController extends Controller
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->getUser();
             $comment = new Comment();
-            $content = $request->getContent('commit');
-            if(!empty($content)) {
-                $comment->setContent($content);
-                $comment->setCreatedAtDate(new \DateTime('NOW'));
-                $comment->setAuthor($user);
-                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-                $event = $repository->findOneBy(['id' => $id]);
-                $comment->setEvent($event);
-                $event->addComment($comment);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($comment);
-                $em->persist($event);
-                $em->flush();
+            $content = $request->request->get('comment');
+            $recaptcha = new ReCaptcha('6LdX3yEUAAAAAOEa-PyccdZkoW5nu027O-rvZPE0');
+            $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+            if(!$resp->isSuccess()){
+                $response = new JsonResponse();
+                $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+                $response->setData(['message'=>'Verify yourself']);
+                return $response;
+            }
+            if(!empty($content) && $resp->isSuccess()) {
+                    $comment->setContent($content);
+                    $comment->setCreatedAtDate(new \DateTime('NOW'));
+                    $comment->setAuthor($user);
+                    $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                    $event = $repository->findOneBy(['id' => $id]);
+                    $comment->setEvent($event);
+                    $event->addComment($comment);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comment);
+                    $em->persist($event);
+                    $em->flush();
+            }
+            else{
+                die;
             }
             return new Response();
         }

@@ -88,7 +88,7 @@ class Event
      * @ORM\Column(type="string", nullable=true)
      *
      *
-     * @Assert\File(mimeTypes={ "image/png" })
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg"})
      */
     private $image;
 
