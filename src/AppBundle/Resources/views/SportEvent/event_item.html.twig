@@ -1,7 +1,11 @@
 {% extends "::basic_layout.html.twig" %}
 
+{% block title %}
+    {{ event.title }}|sport2gether
+{% endblock %}
+
 {% block header %}
-    {% include("::inc/header.html.twig") %}
+    {% include("::inc/user_header.html.twig") %}
 {% endblock %}
 
 {% block content %}
@@ -124,15 +128,17 @@
 
                 <div class="well">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="g-recaptcha" data-sitekey="6LeYxiEUAAAAAI_zC0qjF-8bjG8-GB78EHa5dGYG" data-callback="enableButton"></div>
                         <div class="comment-form">
                             <form id="myform" method="post">
                                 <div class="form-group">
                                     <label for="comment">Comment:</label>
                                     <input type="hidden" name="eventId" id="eventId" class="eventId" value="{{ event.getId }}" />
-                                    <textarea class="form-control js-comment" rows="2" id="comment" name="comment" required></textarea>
+                                    <div class="js-toomany hidden alert alert-danger">{{ 'user.toomany'|trans }}</div>
+                                    <textarea class="form-control js-comment" rows="2" id="comment" name="comment" required maxlength="255"></textarea>
                                 </div>
-                                <input type="submit" id="commentSubmit" class="js-commentSubmit btn btn-default" disabled name="commentSubmit" value="Komentuoti">
+                                <div class="js-verify hidden alert alert-danger">{{ 'user.verify'|trans }}</div>
+                                <div class="g-recaptcha" data-sitekey="6LdX3yEUAAAAAHgCGyEu08ZBiTePPLaBKJWz4ngq"></div>
+                                <input type="submit" id="commentSubmit" class="js-commentSubmit btn btn-default"  name="commentSubmit" value="Komentuoti">
                             </form>
                         </div>
                     {% endif %}
@@ -142,18 +148,13 @@
                         <div class="col-md-12">
                             {{ comment.author.username }}
                             <span class="pull-right">{{ comment.getCreatedAtDate|date("Y-m-d H:i:s") }}</span>
-                            <p>{{ comment.content }}</p>
+                            <p class="break-word">{{ comment.content }}</p>
                         </div>
                     </div>
-
                     <hr>
                     {%  endfor %}
-
-
                 </div>
-
             </div>
-
         </div>
     </div>
 {% endblock %}

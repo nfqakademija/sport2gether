@@ -7,6 +7,7 @@ use AppBundle\Entity\EventSearch;
 use AppBundle\Entity\Event;
 use AppBundle\Form\EventFormType;
 use AppBundle\Form\EventSearchType;
+use ReCaptcha\ReCaptcha;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -69,31 +70,36 @@ class SportEventController extends Controller
      * @Route("/createEvent", name="create_event")
      */
     public function createEventAction(Request $request)
-    {   $user = $this->getUser();
+    {
+        if ($this->get('security.context')->isGranted('ROLE_COACH')) {
+            $event = new Event();
+            $form = $this->createForm(EventFormType::class, $event);
 
-        $event = new Event();
-        $form = $this->createForm(EventFormType::class, $event);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getUser();
-            $file = $event->getImage();
-            if(!empty($file)) {
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $event->setImage($fileName);
+                $file = $event->getImage();
+                if(!empty($file)) {
+                    $fileName = $this->get('app.image_uploader')->upload($file);
+                    $event->setImage($fileName);
+                }
+                $em = $this->getDoctrine()->getManager();
+                /**todo need to add logged user ID*/
+                //$event->setCoach(1);
+                $em->persist($event);
+                $em->flush();
+
+                $this->addFlash('success', 'Sekmingai sukurta');
+                return $this->redirectToRoute('show_all_events');
             }
-            $em = $this->getDoctrine()->getManager();
-            /**todo need to add logged user ID*/
-            $event->setCoach($user);
-            $em->persist($event);
-            $em->flush();
-
-            $this->addFlash('success', 'Sekmingai sukurta');
-            return $this->redirectToRoute('show_all_events');
+            return $this->render('AppBundle:SportEvent:create_event.html.twig', [
+                'createEventForm' => $form->createView()
+            ]);
         }
-        return $this->render('AppBundle:SportEvent:create_event.html.twig', [
-            'createEventForm' => $form->createView()
-        ]);
+        else {
+            return $this->redirectToRoute('registerCoach');
+        }
+
 
     }
 
@@ -161,20 +167,29 @@ class SportEventController extends Controller
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->getUser();
             $comment = new Comment();
-            $content = $request->getContent('commit');
-            if(!empty($content)) {
-                $comment->setContent($content);
-                $comment->setCreatedAtDate(new \DateTime('NOW'));
-                $comment->setAuthor($user);
-                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-                $event = $repository->findOneBy(['id' => $id]);
-                $comment->setEvent($event);
-                $event->addComment($comment);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($comment);
-                $em->persist($event);
-                $em->flush();
+            $content = $request->request->get('comment');
+            $recaptcha = new ReCaptcha('6LdX3yEUAAAAAOEa-PyccdZkoW5nu027O-rvZPE0');
+            $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+            if(!$resp->isSuccess()){
+                $response = new JsonResponse();
+                $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+                $response->setData(['message'=>'Verify yourself']);
+                return $response;
             }
+            if(!empty($content) && $resp->isSuccess()) {
+                    $comment->setContent($content);
+                    $comment->setCreatedAtDate(new \DateTime('NOW'));
+                    $comment->setAuthor($user);
+                    $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                    $event = $repository->findOneBy(['id' => $id]);
+                    $comment->setEvent($event);
+                    $event->addComment($comment);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comment);
+                    $em->persist($event);
+                    $em->flush();
+            }
+
             return new Response();
         }
         else {
