@@ -35,16 +35,16 @@
         <div class="container transparent-header">
             <div class="collapse navbar-collapse" id="upmenu">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 col-sm-offset-1">
                         <a href="#" class="header-link"><h2 class="header-logo header-logo--white">Sport2gether</h2></a></div>
                     <div class="col-sm-6 col-sm-offset-2">
                         <ul class="nav navbar-nav" id="navbarontop">
                             {% if is_granted('ROLE_USER') %}
                             <li>
-                                <a class="myEventLink"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                                <a class="myEventLink myEventLink--white"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                             </li>
                             <li>
-                                <a class="myEventLink" href="">{{ 'user.createEvent'|trans }}</a>
+                                <a class="myEventLink myEventLink--white" href="">{{ 'user.createEvent'|trans }}</a>
                             </li>
                         </ul>
                         {% endif %}
