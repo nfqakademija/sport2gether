@@ -183,9 +183,7 @@ class SportEventController extends Controller
                     $em->persist($event);
                     $em->flush();
             }
-            else{
-                die;
-            }
+
             return new Response();
         }
         else {
