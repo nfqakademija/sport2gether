@@ -71,10 +71,9 @@ class SportEventController extends Controller
      */
     public function createEventAction(Request $request)
     {
-        if ($this->get('security.context')->isGranted('ROLE_COACH')) {
+        if ($this->isGranted('ROLE_COACH')) {
             $event = new Event();
             $form = $this->createForm(EventFormType::class, $event);
-
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
 
@@ -84,8 +83,8 @@ class SportEventController extends Controller
                     $event->setImage($fileName);
                 }
                 $em = $this->getDoctrine()->getManager();
-                /**todo need to add logged user ID*/
-                //$event->setCoach(1);
+                $user = $this->getUser();
+                $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
 
