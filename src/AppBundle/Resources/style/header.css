@@ -5,7 +5,7 @@ button.myEventLink{
     margin-left: 5px !important;
 }
 .user_header_form {
-    padding-top: 6px;
+    padding-top: 12px;
 }
 
 .transparent-header {
@@ -28,6 +28,8 @@ button.myEventLink{
 }
 
 .header-logo--black {
+    font-size: 30px;
+    margin-top: 20px;
     color: black;
     text-shadow: none;
 }
@@ -39,4 +41,28 @@ button.myEventLink{
 .myEventLink--black {
     color: black !important;
     text-shadow: none;
+}
+
+.input-group-btn {
+    width: 40px !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-form .form-control {
+        width: 100%;
+    }
+}
+
+.header__searchInput {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .header__searchInput {
+        width: 65%;
+    }
+    .header__cityDropdown {
+        width: 30%;
+        max-width: 100px;
+    }
 }

@@ -101,10 +101,11 @@ text-decoration: none;
 }
 .topnav{
 	background: none;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
-.topnavbar .container{
-	margin-left: 107px !important;
-}
+/*.topnavbar .container{*/
+	/*margin-left: 107px !important;*/
+/*}*/
 .toggle-costume{
 	float: left;
 }
@@ -134,7 +135,6 @@ text-decoration: none;
   #navbarontop > li >a:hover{
   	background-color: none!important;
   	background: none!important;
-  	border-bottom: 1px solid white;
   }
  
 
@@ -172,10 +172,6 @@ text-decoration: none;
 	background-color: none!important;
   border-color: #C59E47;
 }
-#navbarontop a:focus {
-  outline: none;
-  border-bottom: 2px solid #C59E47; 
-}
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
 	font-family: 'BebasNeue Regular';
 	font-size: 13pt;
@@ -198,9 +194,9 @@ text-decoration: none;
 	padding-left: 0px;
 	margin-left: 0px;
 }
-.topnavbar .container{
-	margin-left: 10px !important;
-}
+/*.topnavbar .container{*/
+	/*margin-left: 10px !important;*/
+/*}*/
 .logo{
 	position: absolute;
 	top:0px;
@@ -234,9 +230,9 @@ text-decoration: none;
 }
 }
 @media screen and (min-width: 481px) and (max-width: 767px){
-.topnavbar .container{
-	margin-left: 10px !important;
-}
+/*.topnavbar .container{*/
+	/*margin-left: 10px !important;*/
+/*}*/
 .toggle-costume{
 float: right;
 }
@@ -271,9 +267,9 @@ float: right;
 }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px){
-	.topnavbar .container {
-		margin-left: 50px !important;
-	}
+	/*.topnavbar .container {*/
+		/*margin-left: 50px !important;*/
+	/*}*/
 	#navbarontop{
 		padding-left: 25%;
 	}
