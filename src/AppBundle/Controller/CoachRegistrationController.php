@@ -55,6 +55,14 @@ class CoachRegistrationController extends BaseController
                 $user->setRoles(['USER_COACH']);
                 $em->persist($user);
                 $em->flush();
+                $coach = new Coach();
+                $coach->setUser($user);
+                $coach->setFirstName($user->getUsername());
+                $em->persist($coach);
+                $user->setCoach($coach);
+                $em->persist($user);
+                $em->flush();
+
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('fos_user_registration_confirmed');

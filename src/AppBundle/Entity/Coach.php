@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\City;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\User;
 
 
 /**
@@ -29,14 +30,14 @@ class Coach
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255,nullable=true)
      */
     private $lastName;
 
@@ -53,6 +54,7 @@ class Coach
     private $city;
 
     /**
+     * @var User
      * @ORM\OneToOne(targetEntity="User", inversedBy="coach")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -214,7 +216,9 @@ class Coach
      */
     public function __toString()
     {
-        return $this->firstName." ".$this->lastName;
+
+        return $this->firstName . " " . $this->lastName;
+
     }
 
     /**
@@ -248,7 +252,7 @@ class Coach
      *
      * @return Coach
      */
-    public function setUser(User $user = null)
+    public function setUser(User $user)
     {
         $this->user = $user;
 
@@ -263,5 +267,10 @@ class Coach
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function isSetName()
+    {
+        return $this->firstName || $this->lastName;
     }
 }
