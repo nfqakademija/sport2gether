@@ -70,7 +70,7 @@ class SportEventController extends Controller
      */
     public function createEventAction(Request $request)
     {   $user = $this->getUser();
-    
+
         $event = new Event();
         $form = $this->createForm(EventFormType::class, $event);
 
@@ -125,7 +125,7 @@ class SportEventController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
         $event = $repository->find($id);
-
+        //var_dump($event);
 
         return $this->render('AppBundle:SportEvent:event_item.html.twig', array(
             'event' => $event
