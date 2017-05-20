@@ -83,6 +83,9 @@ small {
 .padding15{
     padding: 0 15px;
 }
+.clear{
+    clear:both;
+}
 
 @media screen and (max-width: 585px) {
     .intro-header {
