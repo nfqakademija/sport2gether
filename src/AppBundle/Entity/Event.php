@@ -88,7 +88,7 @@ class Event
      * @ORM\Column(type="string", nullable=true)
      *
      *
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg"})
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg"}, maxSize="2056k", maxSizeMessage="Failas yra per didelis")
      */
     private $image;
 

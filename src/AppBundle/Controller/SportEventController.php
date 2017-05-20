@@ -71,29 +71,35 @@ class SportEventController extends Controller
      */
     public function createEventAction(Request $request)
     {
-        $event = new Event();
-        $form = $this->createForm(EventFormType::class, $event);
+        if ($this->get('security.context')->isGranted('ROLE_COACH')) {
+            $event = new Event();
+            $form = $this->createForm(EventFormType::class, $event);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $event->getImage();
-            if(!empty($file)) {
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $event->setImage($fileName);
+                $file = $event->getImage();
+                if(!empty($file)) {
+                    $fileName = $this->get('app.image_uploader')->upload($file);
+                    $event->setImage($fileName);
+                }
+                $em = $this->getDoctrine()->getManager();
+                /**todo need to add logged user ID*/
+                //$event->setCoach(1);
+                $em->persist($event);
+                $em->flush();
+
+                $this->addFlash('success', 'Sekmingai sukurta');
+                return $this->redirectToRoute('show_all_events');
             }
-            $em = $this->getDoctrine()->getManager();
-            /**todo need to add logged user ID*/
-            //$event->setCoach(1);
-            $em->persist($event);
-            $em->flush();
-
-            $this->addFlash('success', 'Sekmingai sukurta');
-            return $this->redirectToRoute('show_all_events');
+            return $this->render('AppBundle:SportEvent:create_event.html.twig', [
+                'createEventForm' => $form->createView()
+            ]);
         }
-        return $this->render('AppBundle:SportEvent:create_event.html.twig', [
-            'createEventForm' => $form->createView()
-        ]);
+        else {
+            return $this->redirectToRoute('registerCoach');
+        }
+
 
     }
 
@@ -125,7 +131,7 @@ class SportEventController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
         $event = $repository->find($id);
-
+        //var_dump($event);
 
         return $this->render('AppBundle:SportEvent:event_item.html.twig', array(
             'event' => $event
@@ -183,9 +189,7 @@ class SportEventController extends Controller
                     $em->persist($event);
                     $em->flush();
             }
-            else{
-                die;
-            }
+
             return new Response();
         }
         else {
