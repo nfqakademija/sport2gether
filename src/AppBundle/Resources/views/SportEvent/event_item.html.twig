@@ -1,7 +1,11 @@
 {% extends "::basic_layout.html.twig" %}
 
+{% block title %}
+    {{ event.title }}|sport2gether
+{% endblock %}
+
 {% block header %}
-    {% include("::inc/header.html.twig") %}
+    {% include("::inc/user_header.html.twig") %}
 {% endblock %}
 
 {% block content %}
