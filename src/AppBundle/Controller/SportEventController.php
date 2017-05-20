@@ -130,7 +130,7 @@ class SportEventController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
         $event = $repository->find($id);
-        //var_dump($event);
+        //dump($event);die;
 
         return $this->render('AppBundle:SportEvent:event_item.html.twig', array(
             'event' => $event
