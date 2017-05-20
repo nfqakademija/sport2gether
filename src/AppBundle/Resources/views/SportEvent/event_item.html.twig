@@ -76,34 +76,28 @@
                                 <div class="well well-sm">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-4">
-                                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                                            <img src="{{ event.coach.image ? '/uploads/images/' ~ event.coach.image : '/images/default_user_image.jpg.png' }}" alt="" class="img-rounded img-responsive" />
                                         </div>
                                         <div class="col-sm-6 col-md-8 padding15">
-                                            <h4>
-                                                Bhaumik Patel</h4>
-                                            <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
-                                                    </i></cite></small>
+                                            <h4>{{ event.coach.firstName }} {{ event.coach.lastName }}</h4>
+                                            <small><cite>
+                                                {% if event.coach.city is not empty %}
+                                                    {{ event.coach.city }}
+                                                    {% else %}
+                                                    {{ 'user.nenurodyta'|trans }}
+                                                {% endif %}
+                                                <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                                             <p>
-                                                <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                <a href="mailto:{{ event.coach.user.email }}">{{ event.coach.user.email }}</a>
                                                 <br />
-                                                <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                                                <br />
-                                                <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-                                            <!-- Split button -->
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary">
-                                                    Social</button>
-                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                    <span class="caret"></span><span class="sr-only">Social</span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Twitter</a></li>
-                                                    <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                                                    <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Github</a></li>
-                                                </ul>
-                                            </div>
+                                                <i class="glyphicon glyphicon-phone"></i>
+                                                {% if event.coach.phoneNumber is not empty %}
+                                                    {{ event.coach.phoneNumber }}
+                                                {% else %}
+                                                    {{ 'user.nenurodyta'|trans }}
+                                                {% endif %}
+                                            </p>
                                         </div>
                                     </div>
 
@@ -132,7 +126,7 @@
                         <div class="comment-form">
                             <form id="myform" method="post">
                                 <div class="form-group">
-                                    <label for="comment">Comment:</label>
+                                    <label for="comment">{{ 'user.komentaras'|trans }}:</label>
                                     <input type="hidden" name="eventId" id="eventId" class="eventId" value="{{ event.getId }}" />
                                     <div class="js-toomany hidden alert alert-danger">{{ 'user.toomany'|trans }}</div>
                                     <textarea class="form-control js-comment" rows="2" id="comment" name="comment" required maxlength="255"></textarea>
