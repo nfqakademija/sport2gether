@@ -43,9 +43,11 @@
                             <li>
                                 <a class="myEventLink"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                             </li>
-                            <li>
-                                <a class="myEventLink" href="">{{ 'user.createEvent'|trans }}</a>
-                            </li>
+                            {% if is_granted('ROLE_COACH') %}
+                                <li>
+                                    <a class="myEventLink" href="">{{ 'user.createEvent'|trans }}</a>
+                                </li>
+                            {% endif %}
                         </ul>
                         {% endif %}
                     </div>

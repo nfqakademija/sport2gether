@@ -10,7 +10,11 @@
         <div class="intro-buttons">
             <h2 class="intro-header">Susirask bendraminčių, sportuokite kartu</h2>
             {% if is_granted('ROLE_USER') %}
-                <a class="" href="{{ path('create_event') }}">{{ 'user.createGroup'|trans }}</a>
+                {% if is_granted('ROLE_COACH') %}
+                    <a class="" href="{{ path('create_event') }}">{{ 'user.createGroup'|trans }}</a>
+                {% else %}
+
+                {% endif %}
             {% else %}
                 <a class="" href="#" data-toggle="modal" data-target="#loginModal">{{ 'user.createGroup'|trans }}</a>
             {% endif %}
@@ -19,7 +23,7 @@
     </div>
 </div>
 <div class="all-contain">
-    <div class = "renderForm">
+    <div class="renderForm">
         {{ render(controller('AppBundle:SportEvent:searchEvents')) }}
     </div>
 </div>
