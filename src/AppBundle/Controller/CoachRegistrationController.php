@@ -52,7 +52,7 @@ class CoachRegistrationController extends BaseController
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-                $user->setRoles(['USER_COACH']);
+                $user->setRoles(['ROLE_COACH']);
                 $em->persist($user);
                 $em->flush();
                 $coach = new Coach();

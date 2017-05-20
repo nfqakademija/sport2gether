@@ -48,5 +48,6 @@ security:
         - { path: ^/administrator/, role: ROLE_ADMIN }
         - { path: ^/attend, role: ROLE_USER }
         - { path: ^/unattend, role: ROLE_USER }
-        - { path: ^/createEvent, role: ROLE_USER }
+        - { path: ^/createEvent, role: ROLE_COACH }
         - { path: ^/myEvents, role: ROLE_USER }
+
