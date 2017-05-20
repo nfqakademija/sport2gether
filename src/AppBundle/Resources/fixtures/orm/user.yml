@@ -3,3 +3,4 @@ AppBundle\Entity\User:
         username (unique): <firstName()>
         email: <email()>
         password: <password()>
+
