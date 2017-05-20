@@ -38,6 +38,11 @@ button.myEventLink{
     color: white !important;
     text-shadow: 1px 2px black;
 }
+
+.myEventLink--white:hover {
+    border-bottom: 2px solid white !important;
+}
+
 .myEventLink--black {
     color: black !important;
     text-shadow: none;

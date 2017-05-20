@@ -41,10 +41,10 @@
                         <ul class="nav navbar-nav" id="navbarontop">
                             {% if is_granted('ROLE_USER') %}
                             <li>
-                                <a class="myEventLink"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                                <a class="myEventLink myEventLink--white"  href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
                             </li>
                             <li>
-                                <a class="myEventLink" href="">{{ 'user.createEvent'|trans }}</a>
+                                <a class="myEventLink myEventLink--white" href="">{{ 'user.createEvent'|trans }}</a>
                             </li>
                         </ul>
                         {% endif %}
