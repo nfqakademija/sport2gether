@@ -1,0 +1,22 @@
+{% extends "::basic_layout.html.twig" %}
+
+{% block header %}
+    {% include(":inc:user_header.html.twig") %}
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-center">
+        <span class="bdots">•</span>
+        {{ 'user.mano'|trans }}
+        <span class="carstxt">{{ 'user.info'|trans }}</span>•
+    </h1>
+
+    <div class="col-md-4 col-md-offset-4 event-form">
+    {{ form_start(coachForm) }}
+    {{ form_widget(coachForm) }}
+    <button type="submit" class="btn yellow-btn">{{ 'user.saugoti'|trans }}</button>
+    {{ form_end(coachForm) }}
+    </div>
+{% endblock %}
+
