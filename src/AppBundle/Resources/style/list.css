@@ -100,3 +100,8 @@ small {
         padding: 7px 35px;
     }
 }
+
+.txtcontent {
+    box-sizing: border-box;
+    border: 2px solid whitesmoke;
+}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Coach;
 use AppBundle\Entity\User;
 
 /**
@@ -44,5 +45,14 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
                         ->setParameter(':user',$user)
                         ->getQuery()
                         ->execute();
+    }
+
+    public function findCoachEvents(Coach $coach)
+    {
+        return $this->createQueryBuilder('event')
+            ->andWhere('event.coach=:coach')
+            ->setParameter(':coach',$coach)
+            ->getQuery()
+            ->execute();
     }
 }

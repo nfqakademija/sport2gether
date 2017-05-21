@@ -12,8 +12,8 @@ fos_user:
         invalid: 'The email is not valid.'
     password:
         blank: 'Prašau įrašykite slaptažodį'
-        short: 'The password is too short.'
-        mismatch: 'The entered passwords don''t match.'
+        short: 'Įveskite bent 6 simbolių slaptažodį.'
+        mismatch: 'Slaptažodžiai neatitinka vienas kitą.'
     new_password:
         blank: 'Please enter a new password.'
         short: 'The new password is too short.'

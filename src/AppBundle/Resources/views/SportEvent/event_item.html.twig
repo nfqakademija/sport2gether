@@ -113,9 +113,10 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="text-center margin-15">
                             {% if event.hasAttendee(app.user) %}
-                            <a id ="leaveEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">Dalyvauju!</a>
+                                <span class="label label-primary">{{ 'user.IamIn'|trans }}</span>
+                            <a id ="leaveEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('unattendEvent',{'id':event.getId}) }}">{{ 'user.unattend'|trans }}</a>
                             {% else %}
-                            <a id ="joinEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('attendEvent',{'id':event.getId}) }}">Dalyvauti</a>
+                            <a id ="joinEvent" class="btn btn-default js-join-event" data-id="{{ event.id }}" data-url="{{ path('attendEvent',{'id':event.getId}) }}">{{ 'user.attend'|trans }}</a>
                             {% endif %}
                         </div>
                     {% endif %}
