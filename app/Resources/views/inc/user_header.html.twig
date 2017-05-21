@@ -46,9 +46,15 @@
                             <ul class="nav navbar-nav" id="navbarontop">
                             {% if is_granted('ROLE_USER') %}
                                 <li>
-                                    <a class="myEventLink myEventLink--black" href="{{ path('myEvents') }}">{{ 'user.events'|trans }}</a>
+                                    <a class="myEventLink myEventLink--white"
+                                       href=
+                                       {% if is_granted('ROLE_COACH') %}
+                                       "{{ path('coachEvents') }}">
+                                        {% else %}
+                                            "{{ path('myEvents') }}" >
+                                        {% endif %}
+                                        {{ 'user.events'|trans }}</a>
                                 </li>
-                                {#<button><span class="postnewcar">{{ 'user.createEvent'|trans }}</span></button>#}
                             </ul>
                             {% endif %}
                         </div>

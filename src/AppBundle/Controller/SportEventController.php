@@ -89,7 +89,7 @@ class SportEventController extends Controller
                 $em->flush();
 
                 $this->addFlash('success', 'Sekmingai sukurta');
-                return $this->redirectToRoute('show_all_events');
+                return $this->redirectToRoute('coachEvents');
             }
             return $this->render('AppBundle:SportEvent:create_event.html.twig', [
                 'createEventForm' => $form->createView()
@@ -279,5 +279,23 @@ class SportEventController extends Controller
             'eventSearchForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/coachEvents", name="coachEvents")
+     */
+    public function viewCoachEventsAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Event');
+        $events = $repository->findCoachEvents($user->getCoach());
+
+
+        return $this->render('@App/SportEvent/result.html.twig', array(
+            'events' => $events
+        ));
+    }
+
+
 
 }
