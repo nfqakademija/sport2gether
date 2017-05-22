@@ -15,6 +15,7 @@ use Symfony\Component\CssSelector\XPath\Extension\CombinationExtension;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Facebook\Facebook;
 
 class SportEventController extends Controller
 {
@@ -87,6 +88,34 @@ class SportEventController extends Controller
                 $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
+
+                $appId = '377571242640422';
+                $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
+                $pageId='1891646464413478';
+                $userAccessToken = 'EAAFXZAifLhCYBACQy15xVXIfxaszefM26fVJfLoBHVMYneyUxa06yzV7uebBXYhHABC16wz3WpVRtZBZAVWmF7gAARLPJPh7vHxBFWvpJhHYcUlWv81NOj1XFY156wrJKmySZAxlcAaWhZAZBPifwx6yZCAZBxze9qtHXgzbAlVHhBsC9tyZApDLFtOJDF2AvEcwZD';
+                $fb = new Facebook([
+                    'app_id' => $appId,
+                    'app_secret' => $appSecret,
+                    'default_graph_version' => 'v2.5'
+                ]);
+                $longLivedToken = $fb->getOAuth2Client()->getLongLivedAccessToken($userAccessToken);
+                $fb->setDefaultAccessToken($longLivedToken);
+                $response = $fb->sendRequest('GET', $pageId, ['fields' => 'access_token'])
+                    ->getDecodedBody();
+                $foreverPageAccessToken = $response['access_token'];
+                $fb = new Facebook([
+                    'app_id' => $appId,
+                    'app_secret' => $appSecret,
+                    'default_graph_version' => 'v2.5'
+                ]);
+
+                $fb->setDefaultAccessToken($foreverPageAccessToken);
+                $fb->sendRequest('POST', "$pageId/feed", [
+                    'name' => $event->getTitle(),
+                    'description' => $event->getDescription(),
+                    'picture' => $event->getImage(),
+                    'link' => 'http://sport2gether.projektai.nfqakademija.lt/viewEvent/'.$event->getId()
+                ]);
 
                 $this->addFlash('success', 'Sekmingai sukurta');
                 return $this->redirectToRoute('coachEvents');
