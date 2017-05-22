@@ -3,7 +3,7 @@ var $findPassion = $(".btn-findPassion");
 $(function () {
     $findPassion.on('click', function () {
 
-        $('html body').animate({
+        $('html, body').animate({
             scrollTop: $('#intro-newest').offset().top
         }, 500);
     });

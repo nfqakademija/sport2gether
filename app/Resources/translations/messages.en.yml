@@ -21,22 +21,18 @@ user:
   coach: Treneris
   attendee: Užsiregistravusių dalyvių skaičius
   saugoti: Saugoti
-  mano: M A N O
-  ivykis: Į V Y K I S
+  myEvent: Mano Įvykis
   verify: Patvirtinkite, kad jūs ne robotas
   noevents: TOKIŲ RENGINIŲ NĖRA
   coachregister: Trenerio Registracija
   toomany: Daugiau simbolių netelpa
   saugoti: Saugoti
-  mano: M A N O
-  ivykis: Į V Y K I S
   nenurodyta: Nenurodyta
   komentaras: Komentaras
-  newest: N A U J A U S I O S
-  practice: T R E N I R U O T Ė S
   attend: Dalyvauti
   unattend: Išsiregistruoti
   IamIn: Jūs dalyvaujate
-  info: Informacija
+  myInfo: Mano Informacija
   coachEdit: Mano profilis
   onlylogged: Tik prisijungęs vartotojas gali komentuoti
+  newestPractices: Naujausios Treniruotės
