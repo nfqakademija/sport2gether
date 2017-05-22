@@ -86,6 +86,8 @@ easy_admin:
         - AppBundle\Entity\Event
         - AppBundle\Entity\Comment
 
+hautelook_alice:
+    fixtures_path: 'Resources/fixtures/orm'
 
 
 
