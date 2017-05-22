@@ -73,7 +73,10 @@ video {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.glyphicon {  margin-bottom: 0px;margin-right: 10px;top:0;}
+.glyphicon {
+    margin-bottom: 0px;
+    top:0;
+}
 
 small {
     display: block;
