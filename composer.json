@@ -32,7 +32,6 @@
         "nelmio/alice": "^3.0@beta",
         "theofidry/alice-data-fixtures": "^1.0@beta",
         "doctrine/data-fixtures": "^1.2",
-        "doctrine/data-fixtures": "^1.2",
         "facebook/graph-sdk": "^5.5"
     },
     "require-dev": {
