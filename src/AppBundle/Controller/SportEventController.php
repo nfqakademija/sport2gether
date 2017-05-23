@@ -124,7 +124,6 @@ class SportEventController extends Controller
         } else {
             return $this->redirectToRoute('registerCoach');
         }
-
     }
 
     /**
