@@ -38,6 +38,15 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
                     ->execute();
     }
 
+    public function findNewestEvents($offset=0, $limit=12) {
+        return $this->createQueryBuilder('event')
+                    ->orderBy('event.date','DESC')
+                    ->setMaxResults($limit)
+                    ->setFirstResult($offset)
+                    ->getQuery()
+                    ->execute();
+    }
+
     public function findUserEvents(User $user)
     {
         return $this->createQueryBuilder('event')

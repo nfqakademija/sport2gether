@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Facebook\Facebook;
-
 class SportEventController extends Controller
 {
     /**
@@ -52,18 +51,34 @@ class SportEventController extends Controller
     }
 
     /**
-     * @Route("/showNewestEventsAction", name="show_newest")
+     * @Route="/showNewestEvents" name="show_newest")
      */
     public function showNewestEventsAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
-        $events = $repository->findAllOrderByDate();
 
-        return $this->render('AppBundle:SportEvent:result.html.twig', [
-            'events' => $events,
-        ]);
+        if ($request->isXmlHttpRequest()) {
+            $offset = $request->get('offset');
+
+            $events = $repository->findNewestEvents($offset);
+
+            // the end of the list
+            if($events == []) {
+                return new Response(null);
+            }
+
+            return $this->render('AppBundle:SportEvent:main_list.html.twig', [
+                'events' => $events,
+            ]);
+        } else {
+            // get first 12 newest events
+            $events = $repository->findNewestEvents();
+
+            return $this->render('AppBundle:SportEvent:main_list.html.twig', [
+                'events' => $events,
+            ]);
+        }
     }
 
 

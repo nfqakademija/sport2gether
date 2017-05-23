@@ -1,6 +1,6 @@
-var $findPassion = $(".btn-findPassion");
-
 $(function () {
+    var $findPassion = $(".btn-findPassion");
+
     $findPassion.on('click', function () {
 
         $('html, body').animate({
@@ -8,7 +8,7 @@ $(function () {
         }, 500);
     });
 });
-
+// on touch screen replace background video with image
 $(function() {
     var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
@@ -21,7 +21,7 @@ $(function() {
     }
 });
 
-$(document).ready(function() {
+$(function() {
     checkSize();
 
     $(window).resize(checkSize);
@@ -55,3 +55,4 @@ function checkSize(){
 
     }
 }
+

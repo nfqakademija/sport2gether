@@ -10,7 +10,11 @@
             <div class="feturedsection">
                 <h1 class="text-center">{{ 'user.newestPractices'|trans }}</h1>
             </div>
-        {{ include('AppBundle:SportEvent:main_list.html.twig') }}
+        <div class="eventList">
+            {{ render(controller('AppBundle:SportEvent:showNewestEvents')) }}
+        </div>
+
+
     </div>
 {% endblock %}
 
