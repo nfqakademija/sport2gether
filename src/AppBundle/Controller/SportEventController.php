@@ -88,7 +88,7 @@ class SportEventController extends Controller
                 $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
-
+                
                 $appId = '377571242640422';
                 $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
                 $pageId='1891646464413478';
