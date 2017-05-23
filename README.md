@@ -2,6 +2,9 @@
 # Sport2gether
 #### NFQ Academy 2017 spring
 
+## Code standarts
+[![Build Status](https://travis-ci.org/nfqakademija/sport2gether.svg?branch=master)](https://travis-ci.org/nfqakademija/sport2gether)
+
 ---
 
 **Requirements**
