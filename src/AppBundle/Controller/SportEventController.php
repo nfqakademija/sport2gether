@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Facebook\Facebook;
+
 class SportEventController extends Controller
 {
     /**
@@ -63,7 +64,7 @@ class SportEventController extends Controller
             $events = $repository->findNewestEvents($offset);
 
             // the end of the list
-            if($events == []) {
+            if ($events == []) {
                 return new Response(null);
             }
 
@@ -101,24 +102,24 @@ class SportEventController extends Controller
                 $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
-                
+
                 $appId = '377571242640422';
                 $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
-                $pageId='1891646464413478';
+                $pageId = '1891646464413478';
                 $userAccessToken = 'aEAAFXZAifLhCYBAM6ZBZA4wB7dhxoZBTnIguFLi8fkmzGCKGkjBmUNKqOWiGkKU9xBjfeqMYWn0V7frG6KQRjyMPxvUvL7s5fgBUvfphkZB1WDU9FGN4dXnqQfENbh9xnOzcbsM5CKud6MHopZBH1fV3I0e2lqSmYXZAw3cWxwHmM6C9ZA0fcYehI3ZBCLIZAHK3AYZD';
 
                 $ch = curl_init();
 
                 $optArray = array(
-                    CURLOPT_URL => 'https://graph.facebook.com/app?access_token='.$userAccessToken,
+                    CURLOPT_URL => 'https://graph.facebook.com/app?access_token=' . $userAccessToken,
                     CURLOPT_RETURNTRANSFER => true
                 );
                 curl_setopt_array($ch, $optArray);
                 $result = curl_exec($ch);
                 curl_close($ch);
-                $res=json_decode($result);
+                $res = json_decode($result);
 
-                if(!isset($res->error)) {
+                if (!isset($res->error)) {
                     $fb = new Facebook([
                         'app_id' => $appId,
                         'app_secret' => $appSecret,
