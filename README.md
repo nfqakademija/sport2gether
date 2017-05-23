@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nfqakademija/sport2gether.svg?branch=master)](https://travis-ci.org/nfqakademija/sport2gether)
+[![Build Status](https://travis-ci.org/nfqakademija/sport2gether.svg?branch=master)](https://travis-ci.org/nfqakademija/sport2gether)[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nfqakademija/sport2gether/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nfqakademija/sport2gether/?branch=master)
 
 ![](https://avatars0.githubusercontent.com/u/4995607?v=3&s=100)
 # Sport2gether
