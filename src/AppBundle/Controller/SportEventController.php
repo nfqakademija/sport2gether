@@ -88,7 +88,7 @@ class SportEventController extends Controller
                 $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
-
+                /*
                 $appId = '377571242640422';
                 $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
                 $pageId='1891646464413478';
@@ -115,7 +115,7 @@ class SportEventController extends Controller
                     'description' => $event->getDescription(),
                     'picture' => $event->getImage(),
                     'link' => 'http://sport2gether.projektai.nfqakademija.lt/viewEvent/'.$event->getId()
-                ]);
+                ]);*/
 
                 $this->addFlash('success', 'Sekmingai sukurta');
                 return $this->redirectToRoute('coachEvents');
