@@ -1,8 +1,8 @@
 filter:
     paths: ["src/*"]
-     excluded_paths:
-          - "src/AppBundle/Resources/scripts/vendors/*"
-
+    excluded_paths:
+        - "src/AppBundle/Resources/scripts/vendors/*"
+        
 checks:
     php: true
     javascript: true
