@@ -107,7 +107,6 @@ class Event
     }
 
 
-
     /**
      * @param string $imageUrl
      */
@@ -368,7 +367,8 @@ class Event
         return $this->comments;
     }
 
-    public function hasAttendee(User $user){
+    public function hasAttendee(User $user)
+    {
         return $this->attendees->contains($user);
     }
 }

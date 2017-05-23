@@ -21,7 +21,7 @@ class EventSearchType extends AbstractType
                 'placeholder' => 'Miestas',
                 'required' => false
             ))
-            ->add('title',null, array(
+            ->add('title', null, array(
                 'required' => false
             ));
     }
@@ -29,7 +29,7 @@ class EventSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' =>EventSearch::class
+            'data_class' => EventSearch::class
         ));
     }
 
