@@ -20,5 +20,4 @@ class HomeController extends Controller
             'events' => $events
         ]);
     }
-
 }

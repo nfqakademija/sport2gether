@@ -3,7 +3,6 @@
 
 namespace AppBundle\Entity;
 
-
 class EventSearch
 {
     private $title;
@@ -59,5 +58,4 @@ class EventSearch
     {
         $this->category = $category;
     }
-
 }

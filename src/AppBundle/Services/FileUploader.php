@@ -2,7 +2,6 @@
 
 namespace AppBundle\Services;
 
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader

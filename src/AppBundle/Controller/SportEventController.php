@@ -30,7 +30,6 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
             $em = $this->getDoctrine()->getManager();
@@ -77,7 +76,6 @@ class SportEventController extends Controller
             $form = $this->createForm(EventFormType::class, $event);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $file = $event->getImage();
                 if (!empty($file)) {
                     $fileName = $this->get('app.image_uploader')->upload($file);
@@ -126,7 +124,6 @@ class SportEventController extends Controller
         } else {
             return $this->redirectToRoute('registerCoach');
         }
-
 
     }
 
@@ -286,7 +283,6 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
             $em = $this->getDoctrine()->getManager();
@@ -318,6 +314,4 @@ class SportEventController extends Controller
             'events' => $events
         ));
     }
-
-
 }

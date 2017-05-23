@@ -24,30 +24,41 @@ class EventFormType extends AbstractType
     {
 
         $builder
-            ->add('image', FileType::class, [
-                'label' => 'Paveikslėlis',
-                'required' => false
-            ])
-            ->add('title', TextType::class,
+            ->add(
+                'image', FileType::class,
+                [
+                    'label' => 'Paveikslėlis',
+                    'required' => false
+                ]
+            )
+            ->add(
+                'title', TextType::class,
                 [
                     'label' => "Pavadinimas*",
                     'attr' => array('class' => 'form-control'),
                     'label_attr' => array('class' => 'control-label'),
-                ])
+                ]
+            )
             ->add('date', DateTimeType::class, ['label' => "Data*"])
             ->add('address', TextType::class, ['label' => "Adresas*"])
             ->add('description', TextType::class, ['label' => "Aprašymas*"])
             //->add('coach',TextType::class,['label' => "Treneris"])
-            ->add('category', EntityType::class, array(
-                'class' => 'AppBundle:Category',
-                'label' => 'Kategorija*',
-                'placeholder' => '-'
-            ))
-            ->add('city', EntityType::class, array(
-                'class' => 'AppBundle:City',
-                'label' => 'Miestas*',
-                'placeholder' => '-'
-            ));
+            ->add(
+                'category', EntityType::class,
+                [
+                    'class' => 'AppBundle:Category',
+                    'label' => 'Kategorija*',
+                    'placeholder' => '-'
+                ]
+            )
+            ->add(
+                'city', EntityType::class,
+                [
+                    'class' => 'AppBundle:City',
+                    'label' => 'Miestas*',
+                    'placeholder' => '-'
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -3,7 +3,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Coach;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,7 +16,6 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class CoachRegistrationController extends BaseController
 {
@@ -69,8 +67,10 @@ class CoachRegistrationController extends BaseController
                     $response = new RedirectResponse($url);
                 }
 
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED,
-                    new FilterUserResponseEvent($user, $request, $response));
+                $dispatcher->dispatch(
+                    FOSUserEvents::REGISTRATION_COMPLETED,
+                    new FilterUserResponseEvent($user, $request, $response)
+                );
 
                 return $response;
             }
@@ -88,4 +88,3 @@ class CoachRegistrationController extends BaseController
         ));
     }
 }
-
