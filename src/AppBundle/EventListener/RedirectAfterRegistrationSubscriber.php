@@ -8,7 +8,6 @@
 
 namespace AppBundle\EventListener;
 
-
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -30,9 +29,8 @@ class RedirectAfterRegistrationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_SUCCESS => ['onFormSuccess',-10]
+            FOSUserEvents::REGISTRATION_SUCCESS => ['onFormSuccess', -10]
         );
-
     }
 
     public function onFormSuccess(FormEvent $event)
@@ -41,5 +39,4 @@ class RedirectAfterRegistrationSubscriber implements EventSubscriberInterface
 
         $event->setResponse(new RedirectResponse($url));
     }
-
 }

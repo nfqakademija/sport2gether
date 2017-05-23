@@ -29,16 +29,15 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
-             $em = $this->getDoctrine()->getManager();
-             $events = $em->getRepository('AppBundle:Event')
-                 ->findAllByTitle($title,$city);
+            $em = $this->getDoctrine()->getManager();
+            $events = $em->getRepository('AppBundle:Event')
+                ->findAllByTitle($title, $city);
 
-             return $this->render('@App/SportEvent/result.html.twig',[
-                 'events'=>$events
-             ]);
+            return $this->render('@App/SportEvent/result.html.twig', [
+                'events' => $events
+            ]);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -92,9 +91,8 @@ class SportEventController extends Controller
             $form = $this->createForm(EventFormType::class, $event);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $file = $event->getImage();
-                if(!empty($file)) {
+                if (!empty($file)) {
                     $fileName = $this->get('app.image_uploader')->upload($file);
                     $event->setImage($fileName);
                 }
@@ -152,12 +150,9 @@ class SportEventController extends Controller
             return $this->render('AppBundle:SportEvent:create_event.html.twig', [
                 'createEventForm' => $form->createView()
             ]);
-        }
-        else {
+        } else {
             return $this->redirectToRoute('registerCoach');
         }
-
-
     }
 
     /**
@@ -165,8 +160,7 @@ class SportEventController extends Controller
      */
     public function editEventAction()
     {
-        return $this->render('AppBundle:SportEvent:edit_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:edit_event.html.twig', array(// ...
         ));
     }
 
@@ -175,8 +169,7 @@ class SportEventController extends Controller
      */
     public function joinEventAction()
     {
-        return $this->render('AppBundle:SportEvent:join_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:join_event.html.twig', array(// ...
         ));
     }
 
@@ -198,8 +191,7 @@ class SportEventController extends Controller
      */
     public function searchEventAction()
     {
-        return $this->render('AppBundle:SportEvent:search_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:search_event.html.twig', array(// ...
         ));
     }
 
@@ -208,8 +200,7 @@ class SportEventController extends Controller
      */
     public function listEventsAction()
     {
-        return $this->render('AppBundle:SportEvent:list_events.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:list_events.html.twig', array(// ...
         ));
     }
 
@@ -225,30 +216,29 @@ class SportEventController extends Controller
             $content = $request->request->get('comment');
             $recaptcha = new ReCaptcha('6LdX3yEUAAAAAOEa-PyccdZkoW5nu027O-rvZPE0');
             $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
-            if(!$resp->isSuccess()){
+            if (!$resp->isSuccess()) {
                 $response = new JsonResponse();
                 $response->setStatusCode(Response::HTTP_BAD_REQUEST);
-                $response->setData(['message'=>'Verify yourself']);
+                $response->setData(['message' => 'Verify yourself']);
                 return $response;
             }
-            if(!empty($content) && $resp->isSuccess()) {
-                    $comment->setContent($content);
-                    $comment->setCreatedAtDate(new \DateTime('NOW'));
-                    $comment->setAuthor($user);
-                    $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-                    $event = $repository->findOneBy(['id' => $id]);
-                    $comment->setEvent($event);
-                    $event->addComment($comment);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($comment);
-                    $em->persist($event);
-                    $em->flush();
+            if (!empty($content) && $resp->isSuccess()) {
+                $comment->setContent($content);
+                $comment->setCreatedAtDate(new \DateTime('NOW'));
+                $comment->setAuthor($user);
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                $event = $repository->findOneBy(['id' => $id]);
+                $comment->setEvent($event);
+                $event->addComment($comment);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->persist($event);
+                $em->flush();
             }
 
             return new Response();
-        }
-        else {
-          return $this->redirectToRoute('fos_user_security_login');
+        } else {
+            return $this->redirectToRoute('fos_user_security_login');
         }
     }
 
@@ -259,7 +249,7 @@ class SportEventController extends Controller
     public function showCommentsAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $comments = $event->getComments();
         return new JsonResponse($comments);
     }
@@ -270,7 +260,7 @@ class SportEventController extends Controller
     public function attendEventAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $user = $this->getUser();
         $event->addAttendee($user);
         $em = $this->getDoctrine()->getManager();
@@ -285,7 +275,7 @@ class SportEventController extends Controller
     public function unattendEventAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $user = $this->getUser();
         $event->removeAttendee($user);
         $em = $this->getDoctrine()->getManager();
@@ -321,15 +311,14 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
             $em = $this->getDoctrine()->getManager();
             $events = $em->getRepository('AppBundle:Event')
-                ->findAllByTitle($title,$city);
+                ->findAllByTitle($title, $city);
 
-            return $this->render('@App/SportEvent/result.html.twig',[
-                'events'=>$events
+            return $this->render('@App/SportEvent/result.html.twig', [
+                'events' => $events
             ]);
         }
 
@@ -353,7 +342,4 @@ class SportEventController extends Controller
             'events' => $events
         ));
     }
-
-
-
 }

@@ -13,19 +13,19 @@ use AppBundle\Entity\User;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllByTitle($title,$city='')
+    public function findAllByTitle($title, $city = '')
     {
-        $query =  $this->createQueryBuilder('event')
-            ->leftJoin('event.city','ecity')
+        $query = $this->createQueryBuilder('event')
+            ->leftJoin('event.city', 'ecity')
             ->andWhere('event.title LIKE :title')
-            ->setParameter('title','%'.$title.'%');
+            ->setParameter('title', '%' . $title . '%');
 
-        if($city){
+        if ($city) {
             $query->andWhere('ecity.title = :city')
-                  ->setParameter('city',$city);
+                ->setParameter('city', $city);
         }
 
-         return $query->orderBy('event.date','DESC')
+        return $query->orderBy('event.date', 'DESC')
             ->getQuery()
             ->execute();
     }
@@ -33,9 +33,9 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
     public function findAllOrderByDate()
     {
         return $this->createQueryBuilder('event')
-                    ->orderBy('event.date','DESC')
-                    ->getQuery()
-                    ->execute();
+            ->orderBy('event.date', 'DESC')
+            ->getQuery()
+            ->execute();
     }
 
     public function findNewestEvents($offset=0, $limit=12) {
@@ -50,17 +50,17 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
     public function findUserEvents(User $user)
     {
         return $this->createQueryBuilder('event')
-                        ->andWhere(':user MEMBER OF event.attendees')
-                        ->setParameter(':user',$user)
-                        ->getQuery()
-                        ->execute();
+            ->andWhere(':user MEMBER OF event.attendees')
+            ->setParameter(':user', $user)
+            ->getQuery()
+            ->execute();
     }
 
     public function findCoachEvents(Coach $coach)
     {
         return $this->createQueryBuilder('event')
             ->andWhere('event.coach=:coach')
-            ->setParameter(':coach',$coach)
+            ->setParameter(':coach', $coach)
             ->getQuery()
             ->execute();
     }
