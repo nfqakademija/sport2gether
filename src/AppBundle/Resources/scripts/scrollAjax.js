@@ -24,7 +24,7 @@ function addMoreElements() {
             page += 1;
 
         },
-        error: function (data) {
+        error: function () {
             is_processing = false;
         }
     });

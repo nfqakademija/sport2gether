@@ -7,7 +7,7 @@
             error:function(err){
                 console.error(err);
             },
-            success:function(data){
+            success:function(){
                 location.reload();
             },
             complete:function(){
@@ -26,7 +26,7 @@
             error:function(err){
                 console.error(err);
             },
-            success:function(data){
+            success:function(){
                 location.reload();
             },
             complete:function(){
