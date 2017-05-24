@@ -1200,8 +1200,8 @@ padding-left: 0px;
 
 }
 .txthover>img{
-	width:100%;
-
+	width: 100%;
+	height: 396px;
 }
 .txthover:hover .txtcontent{
 	opacity: 1;

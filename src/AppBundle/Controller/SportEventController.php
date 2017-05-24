@@ -81,7 +81,6 @@ class SportEventController extends Controller
         }
     }
 
-
     /**
      * @Route("/createEvent", name="create_event")
      */
@@ -177,7 +176,7 @@ class SportEventController extends Controller
     /**
      * @Route("/viewEvent/{id}", name="viewEvent")
      */
-    public function viewEventAction($id, Request $request)
+    public function viewEventAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');

@@ -23,3 +23,16 @@ npm-debug.log
 .idea
 .env.dist
 /.sass-cache
+
+/web
+app/DoctrineMigrations/Version20170520131254.php
+var/cache/
+web/images/cycling.html
+web/images/cycling_files/
+web/images/horse-riding.jpg
+web/images/newsletter.jpg
+web/images/oldcar.jpg
+web/images/porche.jpg
+web/images/rsz_horse-riding.jpg
+web/images/video-resized.mp4
+web/uploads/images/da4996be1ada308c037cd34091c859b4.png

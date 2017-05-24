@@ -12,12 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-/*
- * @Todo
- */
-//use Symfony\Component\HttpFoundation\Response;
-//$this->get('translator')->trans('Symfony is great')
-
 class EventFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -29,7 +23,8 @@ class EventFormType extends AbstractType
                 FileType::class,
                 [
                     'label' => 'Paveikslėlis',
-                    'required' => false
+                    'required' => false,
+                    'attr' => ['accept' =>'image/*']
                 ]
             )
             ->add(
@@ -44,7 +39,6 @@ class EventFormType extends AbstractType
             ->add('date', DateTimeType::class, ['label' => "Data*"])
             ->add('address', TextType::class, ['label' => "Adresas*"])
             ->add('description', TextType::class, ['label' => "Aprašymas*"])
-            //->add('coach',TextType::class,['label' => "Treneris"])
             ->add(
                 'category',
                 EntityType::class,

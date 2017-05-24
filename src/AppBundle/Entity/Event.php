@@ -88,7 +88,15 @@ class Event
      * @ORM\Column(type="string", nullable=true)
      *
      *
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg"}, maxSize="2056k", maxSizeMessage="Failas yra per didelis")
+     * @Assert\Image(mimeTypes={ "image/png", "image/jpeg"},
+     * maxSize="1000K",
+     * maxSizeMessage="Failas yra per didelis",
+     * minWidth = 250,
+     * minHeight = 300,
+     * minWidthMessage="Nuotraukos plotis per mažas ({{ width }}px). Minimalus plotis turėtų būti {{ min_width }}px",
+     * minHeightMessage="Nuotraukos aukštis per mažas ({{ height }}px). Minimalus aukštis turėtų būti {{ min_height }}px",
+     * corruptedMessage="Nuotraukos failas netinkamas"
+     * )
      */
     private $image;
 
