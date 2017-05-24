@@ -14,7 +14,7 @@ function addMoreElements() {
             offset: offset
         },
         success: function (data) {
-            if(data === null) {
+            if (data === null) {
                 last_page = true;
             }
 
@@ -30,17 +30,24 @@ function addMoreElements() {
     });
 };
 
-// list scroll with AJAX
+// main page list scroll with AJAX
 $(function () {
-    $(window).scroll(function () {
-        var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+    var existsEventList = $('.eventList').length;
 
-        var scrolltrigger = 0.80;
-        if ((wintop / (docheight - winheight)) > scrolltrigger) {
+    if (existsEventList) {
+        $(window).scroll(function () {
+            var wintop = $(window).scrollTop(),
+                docheight = $(document).height(),
+                winheight = $(window).height();
 
-            if (last_page === false && is_processing === false) {
+            var scrolltrigger = 0.80;
+            if ((wintop / (docheight - winheight)) > scrolltrigger) {
+
+                if (last_page === false && is_processing === false) {
                     addMoreElements();
+                }
             }
-        }
-    });
+        });
+    }
 });
+
