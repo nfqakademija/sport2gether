@@ -30,16 +30,15 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
-             $em = $this->getDoctrine()->getManager();
-             $events = $em->getRepository('AppBundle:Event')
-                 ->findAllByTitle($title,$city);
+            $em = $this->getDoctrine()->getManager();
+            $events = $em->getRepository('AppBundle:Event')
+                ->findAllByTitle($title, $city);
 
-             return $this->render('@App/SportEvent/result.html.twig',[
-                 'events'=>$events
-             ]);
+            return $this->render('@App/SportEvent/result.html.twig', [
+                'events' => $events
+            ]);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -52,18 +51,34 @@ class SportEventController extends Controller
     }
 
     /**
-     * @Route("/showNewestEventsAction", name="show_newest")
+     * @Route="/showNewestEvents" name="show_newest")
      */
     public function showNewestEventsAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
-        $events = $repository->findAllOrderByDate();
 
-        return $this->render('AppBundle:SportEvent:result.html.twig', [
-            'events' => $events,
-        ]);
+        if ($request->isXmlHttpRequest()) {
+            $offset = $request->get('offset');
+
+            $events = $repository->findNewestEvents($offset);
+
+            // the end of the list
+            if ($events == []) {
+                return new Response(null);
+            }
+
+            return $this->render('AppBundle:SportEvent:main_list.html.twig', [
+                'events' => $events,
+            ]);
+        } else {
+            // get first 12 newest events
+            $events = $repository->findNewestEvents();
+
+            return $this->render('AppBundle:SportEvent:main_list.html.twig', [
+                'events' => $events,
+            ]);
+        }
     }
 
 
@@ -77,9 +92,8 @@ class SportEventController extends Controller
             $form = $this->createForm(EventFormType::class, $event);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $file = $event->getImage();
-                if(!empty($file)) {
+                if (!empty($file)) {
                     $fileName = $this->get('app.image_uploader')->upload($file);
                     $event->setImage($fileName);
                 }
@@ -88,34 +102,48 @@ class SportEventController extends Controller
                 $event->setCoach($user->getCoach());
                 $em->persist($event);
                 $em->flush();
-                /*
+
                 $appId = '377571242640422';
                 $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
-                $pageId='1891646464413478';
-                $userAccessToken = 'EAAFXZAifLhCYBACQy15xVXIfxaszefM26fVJfLoBHVMYneyUxa06yzV7uebBXYhHABC16wz3WpVRtZBZAVWmF7gAARLPJPh7vHxBFWvpJhHYcUlWv81NOj1XFY156wrJKmySZAxlcAaWhZAZBPifwx6yZCAZBxze9qtHXgzbAlVHhBsC9tyZApDLFtOJDF2AvEcwZD';
-                $fb = new Facebook([
-                    'app_id' => $appId,
-                    'app_secret' => $appSecret,
-                    'default_graph_version' => 'v2.5'
-                ]);
-                $longLivedToken = $fb->getOAuth2Client()->getLongLivedAccessToken($userAccessToken);
-                $fb->setDefaultAccessToken($longLivedToken);
-                $response = $fb->sendRequest('GET', $pageId, ['fields' => 'access_token'])
-                    ->getDecodedBody();
-                $foreverPageAccessToken = $response['access_token'];
-                $fb = new Facebook([
-                    'app_id' => $appId,
-                    'app_secret' => $appSecret,
-                    'default_graph_version' => 'v2.5'
-                ]);
+                $pageId = '1891646464413478';
+                $userAccessToken = 'aEAAFXZAifLhCYBAM6ZBZA4wB7dhxoZBTnIguFLi8fkmzGCKGkjBmUNKqOWiGkKU9xBjfeqMYWn0V7frG6KQRjyMPxvUvL7s5fgBUvfphkZB1WDU9FGN4dXnqQfENbh9xnOzcbsM5CKud6MHopZBH1fV3I0e2lqSmYXZAw3cWxwHmM6C9ZA0fcYehI3ZBCLIZAHK3AYZD';
 
-                $fb->setDefaultAccessToken($foreverPageAccessToken);
-                $fb->sendRequest('POST', "$pageId/feed", [
-                    'name' => $event->getTitle(),
-                    'description' => $event->getDescription(),
-                    'picture' => $event->getImage(),
-                    'link' => 'http://sport2gether.projektai.nfqakademija.lt/viewEvent/'.$event->getId()
-                ]);*/
+                $ch = curl_init();
+
+                $optArray = array(
+                    CURLOPT_URL => 'https://graph.facebook.com/app?access_token=' . $userAccessToken,
+                    CURLOPT_RETURNTRANSFER => true
+                );
+                curl_setopt_array($ch, $optArray);
+                $result = curl_exec($ch);
+                curl_close($ch);
+                $res = json_decode($result);
+
+                if (!isset($res->error)) {
+                    $fb = new Facebook([
+                        'app_id' => $appId,
+                        'app_secret' => $appSecret,
+                        'default_graph_version' => 'v2.5'
+                    ]);
+                    $longLivedToken = $fb->getOAuth2Client()->getLongLivedAccessToken($userAccessToken);
+                    $fb->setDefaultAccessToken($longLivedToken);
+                    $response = $fb->sendRequest('GET', $pageId, ['fields' => 'access_token'])
+                        ->getDecodedBody();
+                    $foreverPageAccessToken = $response['access_token'];
+                    $fb = new Facebook([
+                        'app_id' => $appId,
+                        'app_secret' => $appSecret,
+                        'default_graph_version' => 'v2.5'
+                    ]);
+
+                    $fb->setDefaultAccessToken($foreverPageAccessToken);
+                    $fb->sendRequest('POST', "$pageId/feed", [
+                        'name' => $event->getTitle(),
+                        'description' => $event->getDescription(),
+                        'picture' => $event->getImage(),
+                        'link' => 'http://sport2gether.projektai.nfqakademija.lt/viewEvent/' . $event->getId()
+                    ]);
+                }
 
                 $this->addFlash('success', 'Sekmingai sukurta');
                 return $this->redirectToRoute('coachEvents');
@@ -123,12 +151,9 @@ class SportEventController extends Controller
             return $this->render('AppBundle:SportEvent:create_event.html.twig', [
                 'createEventForm' => $form->createView()
             ]);
-        }
-        else {
+        } else {
             return $this->redirectToRoute('registerCoach');
         }
-
-
     }
 
     /**
@@ -136,8 +161,7 @@ class SportEventController extends Controller
      */
     public function editEventAction()
     {
-        return $this->render('AppBundle:SportEvent:edit_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:edit_event.html.twig', array(// ...
         ));
     }
 
@@ -146,8 +170,7 @@ class SportEventController extends Controller
      */
     public function joinEventAction()
     {
-        return $this->render('AppBundle:SportEvent:join_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:join_event.html.twig', array(// ...
         ));
     }
 
@@ -169,8 +192,7 @@ class SportEventController extends Controller
      */
     public function searchEventAction()
     {
-        return $this->render('AppBundle:SportEvent:search_event.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:search_event.html.twig', array(// ...
         ));
     }
 
@@ -179,8 +201,7 @@ class SportEventController extends Controller
      */
     public function listEventsAction()
     {
-        return $this->render('AppBundle:SportEvent:list_events.html.twig', array(
-            // ...
+        return $this->render('AppBundle:SportEvent:list_events.html.twig', array(// ...
         ));
     }
 
@@ -196,30 +217,29 @@ class SportEventController extends Controller
             $content = $request->request->get('comment');
             $recaptcha = new ReCaptcha('6LdX3yEUAAAAAOEa-PyccdZkoW5nu027O-rvZPE0');
             $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
-            if(!$resp->isSuccess()){
+            if (!$resp->isSuccess()) {
                 $response = new JsonResponse();
                 $response->setStatusCode(Response::HTTP_BAD_REQUEST);
-                $response->setData(['message'=>'Verify yourself']);
+                $response->setData(['message' => 'Verify yourself']);
                 return $response;
             }
-            if(!empty($content) && $resp->isSuccess()) {
-                    $comment->setContent($content);
-                    $comment->setCreatedAtDate(new \DateTime('NOW'));
-                    $comment->setAuthor($user);
-                    $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-                    $event = $repository->findOneBy(['id' => $id]);
-                    $comment->setEvent($event);
-                    $event->addComment($comment);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($comment);
-                    $em->persist($event);
-                    $em->flush();
+            if (!empty($content) && $resp->isSuccess()) {
+                $comment->setContent($content);
+                $comment->setCreatedAtDate(new \DateTime('NOW'));
+                $comment->setAuthor($user);
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
+                $event = $repository->findOneBy(['id' => $id]);
+                $comment->setEvent($event);
+                $event->addComment($comment);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->persist($event);
+                $em->flush();
             }
 
             return new Response();
-        }
-        else {
-          return $this->redirectToRoute('fos_user_security_login');
+        } else {
+            return $this->redirectToRoute('fos_user_security_login');
         }
     }
 
@@ -230,7 +250,7 @@ class SportEventController extends Controller
     public function showCommentsAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $comments = $event->getComments();
         return new JsonResponse($comments);
     }
@@ -241,7 +261,7 @@ class SportEventController extends Controller
     public function attendEventAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $user = $this->getUser();
         $event->addAttendee($user);
         $em = $this->getDoctrine()->getManager();
@@ -256,7 +276,7 @@ class SportEventController extends Controller
     public function unattendEventAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-        $event = $repository->findOneBy(['id'=>$id]);
+        $event = $repository->findOneBy(['id' => $id]);
         $user = $this->getUser();
         $event->removeAttendee($user);
         $em = $this->getDoctrine()->getManager();
@@ -292,15 +312,14 @@ class SportEventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $title = $eventSearch->getTitle();
             $city = $eventSearch->getCity() ? $eventSearch->getCity()->getTitle() : null;
             $em = $this->getDoctrine()->getManager();
             $events = $em->getRepository('AppBundle:Event')
-                ->findAllByTitle($title,$city);
+                ->findAllByTitle($title, $city);
 
-            return $this->render('@App/SportEvent/result.html.twig',[
-                'events'=>$events
+            return $this->render('@App/SportEvent/result.html.twig', [
+                'events' => $events
             ]);
         }
 
@@ -324,7 +343,4 @@ class SportEventController extends Controller
             'events' => $events
         ));
     }
-
-
-
 }

@@ -35,11 +35,9 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($coach);
             $em->flush();
-
         }
         return $this->render('@App/Coach/edit.html.twig', [
             'coachForm' => $form->createView()
         ]);
-
     }
 }

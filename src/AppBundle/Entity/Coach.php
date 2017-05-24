@@ -10,7 +10,6 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Event;
 use AppBundle\Entity\User;
 
-
 /**
  * Coach
  *
@@ -271,7 +270,6 @@ class Coach
     {
 
         return $this->firstName . " " . $this->lastName;
-
     }
 
     /**

@@ -6,7 +6,7 @@ app.user:
     resource: "@AppBundle/Controller/UserController.php"
     type: annotation
     prefix: /user
-#
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
@@ -19,3 +19,7 @@ app.coach:
     resource: "@AppBundle/Controller/CoachRegistrationController.php"
     type: annotation
     prefix: /coach
+
+newestEvents:
+    path:     /showNewestEvents
+    defaults: { _controller: AppBundle:SportEvent:showNewestEvents }

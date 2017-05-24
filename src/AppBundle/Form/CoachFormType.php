@@ -17,34 +17,31 @@ class CoachFormType extends AbstractType
 
         $builder
             ->add('image', FileType::class, [
-                'label'=>'Paveikslėlis',
+                'label' => 'Paveikslėlis',
                 'required' => false
             ])
             ->add('category', EntityType::class, array(
                 'class' => 'AppBundle:Category',
-                'label' =>'Kategorija*',
+                'label' => 'Kategorija*',
                 'placeholder' => '-'
             ))
             ->add('city', EntityType::class, array(
                 'class' => 'AppBundle:City',
-                'label' =>'Miestas*',
+                'label' => 'Miestas*',
                 'placeholder' => '-'
             ))
-            ->add('phoneNumber',TextType::class, [
-                'label' =>'Telefono numeris',
-                'required'=>false,
+            ->add('phoneNumber', TextType::class, [
+                'label' => 'Telefono numeris',
+                'required' => false,
             ])
-            ->add('firstName',TextType::class, [
-                'label' =>'Vardas',
-                'required'=>false,
+            ->add('firstName', TextType::class, [
+                'label' => 'Vardas',
+                'required' => false,
             ])
-            ->add('lastName',TextType::class, [
-                'label' =>'Pavardė',
-                'required'=>false,
-            ])
-
-
-        ;
+            ->add('lastName', TextType::class, [
+                'label' => 'Pavardė',
+                'required' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
