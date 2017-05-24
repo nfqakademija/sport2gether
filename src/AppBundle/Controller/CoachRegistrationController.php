@@ -26,8 +26,6 @@ class CoachRegistrationController extends BaseController
     {
         /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
-        /** @var $userManager UserManagerInterface */
-        $userManager = $this->get('fos_user.user_manager');
         /** @var $dispatcher EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
         $em = $this->getDoctrine()->getManager();

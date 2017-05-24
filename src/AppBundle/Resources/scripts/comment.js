@@ -13,7 +13,7 @@
                         $('.js-verify').removeClass('hidden');
                     };
                 },
-                success: function (data) {
+                success: function () {
                     location.reload();
                 },
                 complete: function () {

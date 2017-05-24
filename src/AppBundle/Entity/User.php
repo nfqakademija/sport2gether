@@ -43,7 +43,7 @@ class User extends BaseUser
     /**
      * Set user
      *
-     * @param Coach $user
+     * @param Coach $coach
      *
      * @return User
      */
