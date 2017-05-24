@@ -10,6 +10,7 @@ $(function () {
 });
 // on touch screen replace background video with image
 $(function() {
+    /** global: navigator */
     var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
     if ( supportsTouch ) {

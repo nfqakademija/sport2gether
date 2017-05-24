@@ -118,7 +118,7 @@ class Event
 
 
     /**
-     * @param string $imageUrl
+     * @param string $image
      */
     public function setImage($image)
     {

@@ -273,30 +273,6 @@ class Coach
     }
 
     /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Coach
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
      * Set user
      *
      * @param User $user
