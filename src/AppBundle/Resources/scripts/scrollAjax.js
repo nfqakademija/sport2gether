@@ -25,8 +25,6 @@ function addMoreElements() {
 
         },
         error: function (data) {
-            console.log('infinite scroll error');
-            console.log(data);
             is_processing = false;
         }
     });
