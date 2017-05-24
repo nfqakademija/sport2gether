@@ -81,7 +81,6 @@ class SportEventController extends Controller
         }
     }
 
-
     /**
      * @Route("/createEvent", name="create_event")
      */
@@ -106,7 +105,7 @@ class SportEventController extends Controller
                 $appId = '377571242640422';
                 $appSecret = '572ca2118f7bff76d9cc0bff3adcd244';
                 $pageId = '1891646464413478';
-                $userAccessToken = 'aEAAFXZAifLhCYBAM6ZBZA4wB7dhxoZBTnIguFLi8fkmzGCKGkjBmUNKqOWiGkKU9xBjfeqMYWn0V7frG6KQRjyMPxvUvL7s5fgBUvfphkZB1WDU9FGN4dXnqQfENbh9xnOzcbsM5CKud6MHopZBH1fV3I0e2lqSmYXZAw3cWxwHmM6C9ZA0fcYehI3ZBCLIZAHK3AYZD';
+                $userAccessToken = $this->getParameter('userAccessToken');
 
                 $ch = curl_init();
 
@@ -177,7 +176,7 @@ class SportEventController extends Controller
     /**
      * @Route("/viewEvent/{id}", name="viewEvent")
      */
-    public function viewEventAction($id, Request $request)
+    public function viewEventAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Event');
