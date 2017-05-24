@@ -93,8 +93,10 @@ class Event
      * maxSizeMessage="Failas yra per didelis",
      * minWidth = 250,
      * minHeight = 300,
-     * minWidthMessage="Nuotraukos plotis per mažas ({{ width }}px). Minimalus plotis turėtų būti {{ min_width }}px",
-     * minHeightMessage="Nuotraukos aukštis per mažas ({{ height }}px). Minimalus aukštis turėtų būti {{ min_height }}px",
+     * minWidthMessage="Nuotraukos plotis per mažas ({{ width }}px).
+       Minimalus plotis turėtų būti {{ min_width }}px",
+     * minHeightMessage="Nuotraukos aukštis per mažas ({{ height }}px).
+       Minimalus aukštis turėtų būti {{ min_height }}px",
      * corruptedMessage="Nuotraukos failas netinkamas"
      * )
      */
